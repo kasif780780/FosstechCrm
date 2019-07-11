@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FossTechCrm.Entities;
+using FossTechCrm.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,8 @@ namespace FossTechCrm.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -26,5 +30,17 @@ namespace FossTechCrm.Controllers
 
             return View();
         }
+
+        public ActionResult Leads()
+        {
+            return View();
+        }
+        public ActionResult getdata()
+        {
+            List<Lead> data = db.Leads.ToList<Lead>();
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+      
     }
 }
