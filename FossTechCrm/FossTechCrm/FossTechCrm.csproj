@@ -178,6 +178,7 @@
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyLeadController.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Lead.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -587,6 +588,7 @@
     <Content Include="Views\Lead\Save.cshtml" />
     <Content Include="Views\Lead\Delete.cshtml" />
     <Content Include="Views\Lead\_Action.cshtml" />
+    <Content Include="Views\Lead\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

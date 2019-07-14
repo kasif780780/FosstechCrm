@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Data table</h4>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <button data-href="/Lead/Action" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Create
                     </button>
                     <div class="row">
@@ -81,24 +81,48 @@
                 { "data": "Email", "autoWidth": true },
                 { "data": "Status", "autoWidth": true },
                 {
-                    "data": "LeadID", "width": "50px", "render": function (data) { return '<a class="pop" href="/Lead/Save"' + data + '">Edit</a>'; }
+                    "data": "LeadID", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Lead/Action/' + data +'" >Edit</button>'; }
                 },
                 {
-                    "data": "LeadID", "width": "50px", "render": function (data) { return '<a class="pop" href="/Lead/Delete"' + data + '">Delete</a>'; }
+                    "data": "LeadID", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Lead/Delete/' + data + '" >Delete</button>'; }
                 },
             ]
         })
     })
 
-    $("#Createbutton").click(function () {
+    $(".data-btn").click(function () {
 
         $.ajax({
-            url:'@Url.Action("Action","Lead")',
+            url: $(this).attr("data-href"),
         })
             .done(function
                 (response) {
                 $("#exampleModal .modal-dialog").html(response);
             })
     })
+
+    // $(".data-btn").click(function () {
+
+    //    $.ajax({
+    //        url: $(this).attr("data-href"),
+    //    })
+    //        .done(function
+    //            (response) {
+    //            $("#exampleModal .modal-dialog").html(response);
+    //        })
+    //})
+
+    $('#order-listing').on("click", ".data-btn", function (event) {
+
+        event.preventDefault();
+
+        $.ajax({
+            url: $(this).attr("data-href"),
+        })
+            .done(function
+                (response) {
+                $("#exampleModal .modal-dialog").html(response);
+            })
+        });  
 
 </script>

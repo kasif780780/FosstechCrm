@@ -1,7 +1,19 @@
 ﻿@model FossTechCrm.Entities.Lead
+    @if (Model != null)
+    {
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">
+        @if (Model.LeadID>0) {
+
+            <span>Edit Lead</span>
+        }
+        else
+        {
+            <span>Create Lead</span>
+        }
+
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -9,46 +21,47 @@
     <div class="modal-body">
         <form id="formAction">
             <div class="form-row">
+                <input type="hidden" name="LeadID" value="@Model.LeadID" />
                 <div class="form-group col-md-6">
                     <label for="First Name">Name</label>
-                    <input class="form-control" name="FirstName" placeholder="Name">
+                    <input class="form-control" name="FirstName" placeholder="Name" value="@Model.FirstName">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Company Name">Company Name</label>
-                    <input class="form-control" name="CompanyName" placeholder="Company Name">
+                    <input class="form-control" name="CompanyName" placeholder="Company Name" value="@Model.CompanyName">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for=" Phone">Phone</label>
-                    <input class="form-control" name="Phone" placeholder="Phone">
+                    <input class="form-control" name="Phone" placeholder="Phone" value="@Model.Phone">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Email</label>
-                    <input class="form-control" name="Email" placeholder="Email">
+                    <input class="form-control" name="Email" placeholder="Email" value="@Model.Email">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="First Name">Rating</label>
-                    <input class="form-control" name="Ratings" placeholder="Rating">
+                    <input class="form-control" name="Ratings" placeholder="Rating" valu=@Model.Ratings>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Status">Status </label>
-                    <input class="form-control" name="Status" placeholder="Status">
+                    <input class="form-control" name="Status" placeholder="Status" value= @Model.Status>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="LeadSource">LeadSource </label>
-                    <input class="form-control" name="LeadSource" placeholder="LeadSource">
+                    <input class="form-control" name="LeadSource" placeholder="LeadSource" value= @Model.LeadSource>
                 </div>
 
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="Ratings, ">Description </label>
-                    <input class="form-control" name="Description" placeholder="Description">
+                    <input class="form-control" name="Description" placeholder="Description" value= @Model.Description>
                 </div>
 
             </div>
@@ -63,7 +76,7 @@
         <button id="ActionButton" type="button" class="btn btn-primary">Save changes</button>
     </div>
 </div>
-
+    }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
