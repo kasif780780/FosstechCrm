@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace FossTechCrm.Entities
 {
     public class Customer
     {
         public int CustomerId { get; set; }
+        [DataType(DataType.Date)]
         public string Date { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -1,0 +1,133 @@
+﻿
+@model FossTechCrm.Entities.Product
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+                @if (Model.ProductId > 0)
+                {
+
+                    <span>Edit Lead</span>
+                }
+                else
+                {
+                    <span>Create Product</span>
+                }
+
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formAction">
+                <div class="form-row">
+                    <input type="hidden" name="ProductId" value="@Model.ProductId" />
+                    <div class="form-group col-md-6">
+                        <label for="First Name">ProductName</label>
+                        <input class="form-control" name="ProductName" placeholder="Name" value="@Model.ProductName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Company Name">ProductCategory Name</label>
+                        <input class="form-control" name="ProductCategory" placeholder="Company Name" value="@Model.ProductCategory">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for=" Phone">VendorName</label>
+                        <input class="form-control" name="VendorName" placeholder="Phone" value="@Model.VendorName">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Manufacturer</label>
+                        <input class="form-control" name="Manufacturer" placeholder="Email" value="@Model.Manufacturer">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="First Name">SalesEndDate</label>
+                        <input class="form-control" name="SalesEndDate" placeholder="Rating" valu=@Model.SalesEndDate>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Status">SalesStartDate </label>
+                        <input class="form-control" name="SalesStartDate" placeholder="Status" value=@Model.SalesStartDate>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="First Name">UnitPrice</label>
+                        <input class="form-control" name="UnitPrice" placeholder="Rating" valu=@Model.UnitPrice>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Status">Tax </label>
+                        <input class="form-control" name="Tax" placeholder="Status" value=@Model.Tax>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="First Name">SupportStartDate</label>
+                        <input class="form-control" name="SupportStartDate" placeholder="Rating" valu=@Model.SupportStartDate>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Status">SupportEndDate </label>
+                        <input class="form-control" name="SupportEndDate" placeholder="Status" value=@Model.SupportEndDate>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="First Name">Unit</label>
+                        <input class="form-control" name="Unit" placeholder="Rating" valu=@Model.Unit>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Status">IsStock </label>
+                        <input class="form-control" name="IsStock" placeholder="Status" value=@Model.IsStock>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="First Name">IsActive</label>
+                        <input class="form-control" name="IsActive" placeholder="Rating" valu=@Model.IsActive>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Status">Description </label>
+                        <input class="form-control" name="Description" placeholder="Status" value=@Model.Description>
+                    </div>
+                </div>
+              
+
+
+
+            </form>
+            <div class="errorDiv"></div>
+        </div>
+        <div class="modal-footer">
+            <buttond type="button" class="btn btn-secondary" data-dismiss="modal">Close</buttond>
+            <button id="ActionButton" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    $("#ActionButton").click(function () {
+         $.ajax({
+             url: '@Url.Action("Action","Product")',
+             type: "post",
+             data: $("#formAction").serialize()
+        })
+            .done(function
+                (response) {
+                debugger;
+                if (response.Success) {
+                    location.reload();
+
+                }
+                else {
+                    $(".errorDiv").html(response.Message);
+                }
+            })
+    })
+</script>

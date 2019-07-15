@@ -1,11 +1,12 @@
-﻿@model FossTechCrm.Entities.Lead
-
+﻿
+@model FossTechCrm.Entities.Customer
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @if (Model != null)
 {
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-                @if (Model.LeadID > 0)
+                @if (Model.CustomerId > 0)
                 {
 
                     <span>Edit Lead</span>
@@ -23,14 +24,14 @@
         <div class="modal-body">
             <form id="formAction">
                 <div class="form-row">
-                    <input type="hidden" name="LeadID" value="@Model.LeadID" />
+                    <input type="hidden" name="CustomerId" value="@Model.CustomerId" />
                     <div class="form-group col-md-6">
                         <label for="First Name">Name</label>
                         <input class="form-control" name="FirstName" placeholder="Name" value="@Model.FirstName">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="Company Name">Company Name</label>
-                        <input class="form-control" name="CompanyName" placeholder="Company Name" value="@Model.CompanyName">
+                        <input class="form-control" name="LastName" placeholder="Company Name" value="@Model.LastName">
                     </div>
                 </div>
                 <div class="form-row">
@@ -45,21 +46,35 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="First Name">Rating</label>
-                        <input class="form-control" name="Ratings" placeholder="Rating" valu=@Model.Ratings>
+                        <label for="First Name">Date</label>
+                        <input class="form-control" name="Date" id="datepicker" placeholder="Rating" valu=@Model.Date>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="Status">Status </label>
-                        <input class="form-control" name="Status" placeholder="Status" value=@Model.Status>
+                        <label for="Status">Company </label>
+                        <input class="form-control" name="Company" placeholder="Status" value=@Model.Company>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="LeadSource">LeadSource </label>
-                        <input class="form-control" name="LeadSource" placeholder="LeadSource" value=@Model.LeadSource>
+                    <div class="form-group col-md-6">
+                        <label for="First Name">State</label>
+                        <input class="form-control" name="State" placeholder="Rating" valu=@Model.State>
                     </div>
-
+                    <div class="form-group col-md-6">
+                        <label for="Status">Status </label>
+                        <input class="form-control" name="City" placeholder="City" value=@Model.City>
+                    </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="First Name">Rating</label>
+                        <input class="form-control" name="Street" placeholder="Street" valu=@Model.Street>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="Status">Status </label>
+                        <input class="form-control" name="Zip" placeholder="Zip" value=@Model.Zip>
+                    </div>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="Ratings, ">Description </label>
@@ -82,11 +97,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $("#ActionButton").click(function () {
          $.ajax({
-             url: '@Url.Action("Action","Lead")',
+             url: '@Url.Action("Action","Customer")',
              type: "post",
              data: $("#formAction").serialize()
         })
@@ -102,4 +117,11 @@
                 }
             })
     })
+</script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            altFormat: "yy-mm-dd"
+        });
+    });
 </script>

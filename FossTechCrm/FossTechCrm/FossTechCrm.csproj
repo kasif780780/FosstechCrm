@@ -174,12 +174,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyLeadController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Lead.cs" />
+    <Compile Include="Entities\Product.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,12 +190,22 @@
     <Compile Include="Migrations\201907101659154_initial.Designer.cs">
       <DependentUpon>201907101659154_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907142001051_customertable.cs" />
+    <Compile Include="Migrations\201907142001051_customertable.Designer.cs">
+      <DependentUpon>201907142001051_customertable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907142332162_productTable.cs" />
+    <Compile Include="Migrations\201907142332162_productTable.Designer.cs">
+      <DependentUpon>201907142332162_productTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\LeadService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LeadListingsModel.cs" />
   </ItemGroup>
@@ -589,6 +602,11 @@
     <Content Include="Views\Lead\Delete.cshtml" />
     <Content Include="Views\Lead\_Action.cshtml" />
     <Content Include="Views\Lead\_Delete.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\_Action.cshtml" />
+    <Content Include="Views\Customer\_Delete.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\_Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -640,6 +658,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201907101659154_initial.resx">
       <DependentUpon>201907101659154_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907142001051_customertable.resx">
+      <DependentUpon>201907142001051_customertable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907142332162_productTable.resx">
+      <DependentUpon>201907142332162_productTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
