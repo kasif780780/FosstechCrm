@@ -1,14 +1,16 @@
-﻿@{
+﻿@model IEnumerable<FossTechCrm.Entities.Product>
+@{
+
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
+
+<!-- Modal Ends -->
 <!-- Button trigger modal -->
-@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-     Create
-    </button>*@
+
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
@@ -25,7 +27,7 @@
 
                                     <div class="col-sm-12">
                                         <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
-                                            <thead>
+                                            @*<thead>
                                                 <tr role="row">
                                                     <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Order #: activate to sort column descending" style="width: 66px;">Order #</th>
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Purchased On: activate to sort column ascending" style="width: 116px;">Product Name</th>
@@ -36,8 +38,22 @@
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 70px;">Action(Edit)</th>
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 70px;">Actions(Delete)</th>
                                                 </tr>
-                                            </thead>
-
+                                            </thead>*@
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.ProductId)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.ProductName)
+                                            </th>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                   
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                                    </td>
+                                                </tr>
+                                            }
                                         </table>
                                     </div>
                                 </div>
@@ -51,16 +67,14 @@
 </div>
 <!-- content-wrapper ends -->
 <!-- partial:../../partials/_footer.html -->
-<!-- partial -->
-    </div>
+<!-
 <!-- main-panel ends -->
-</div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+@*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         @Html.Partial("_Action")
     </div>
-</div>
+</div>*@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -75,17 +89,34 @@
                 "datatype": "json"
             },
             "columns": [
-                { "data": "LeadID", "autoWidth": true },
-                { "data": "FirstName", "autoWidth": true },
-                { "data": "CompanyName", "autoWidth": true },
-                { "data": "Phone", "autoWidth": true },
-                { "data": "Email", "autoWidth": true },
-                { "data": "Status", "autoWidth": true },
+                { "data": "ProductId", "autoWidth": true },
+                { "data": "ProductName", "autoWidth": true },
+                { "data": "ProductCategory", "autoWidth": true },
+                { "data": "VendorName", "autoWidth": true },
+                { "data": "Manufacturer", "autoWidth": true },
+                { "data": "SalesEndDate", "autoWidth": true },
+                //{ "data": "SalesStartDate", "autoWidth": true },
+                //{ "data": "SupportStartDate", "autoWidth": true },
+                //{ "data": "SupportEndDate", "autoWidth": true },
+                //{ "data": "UnitPrice", "autoWidth": true },
+                //{ "data": "Tax", "autoWidth": true },
+                //{ "data": "Unit", "autoWidth": true },
+                //{ "data": "Description", "autoWidth": true },
+                //{ "data": "IsStock", "autoWidth": true },
+                //{ "data": "IsActive", "autoWidth": true },
+
+
+
+
+
+
+
+
                 {
-                    "data": "LeadID", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Lead/Action/' + data +'" >Edit</button>'; }
+                    "data": "ProductId", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Product/Action/' + data + '" >Edit</button>'; }
                 },
                 {
-                    "data": "LeadID", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Lead/Delete/' + data + '" >Delete</button>'; }
+                    "data": "ProductId", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Lead/Delete/' + data + '" >Delete</button>'; }
                 },
             ]
         })
@@ -96,10 +127,12 @@
         $.ajax({
             url: $(this).attr("data-href"),
         })
+        debugger
             .done(function
-                (response) {
-                $("#exampleModal .modal-dialog").html(response);
-            })
+
+            (response) {
+            $("#exampleModal .modal-dialog").html(response);
+        })
     })
 
     // $(".data-btn").click(function () {
@@ -124,6 +157,6 @@
                 (response) {
                 $("#exampleModal .modal-dialog").html(response);
             })
-        });
+    });
 
 </script>

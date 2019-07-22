@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <!-- plugins:css -->
-
     @*<link href="~/Theme/vendors/mdi/css/materialdesignicons.min.css" rel="stylesheet" />*@
-    <link href="https://cdn.materialdesignicons.com/3.7.95/css/materialdesignicons.min.css" rel="stylesheet"
-/>    <link href="~/Theme/vendors/css/vendor.bundle.base.css" rel="stylesheet" />
+    <link href="https://cdn.materialdesignicons.com/3.7.95/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/Theme/vendors/css/vendor.bundle.base.css" rel="stylesheet" />
     <link href="~/Theme/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
     <link href="~/Theme/css/horizontal-layout/style.css" rel="stylesheet" />
     <link rel="shortcut icon" href="~/Theme/images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css" />
     <link href="~/Theme/vendors/datatables.net-bs4/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
 </head>
 <body>
     @Html.Partial("TopHeader")
@@ -29,7 +29,14 @@
     <script src="~/Theme/js/dashboard.js"></script>
     <script src="~/Theme/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="~/Theme/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+    
+
     @*<script src="~/Theme/js/data-table.js"></script>*@
     <script src="~/Theme/js/modal-demo.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>

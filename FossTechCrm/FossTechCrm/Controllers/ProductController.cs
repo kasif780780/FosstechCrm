@@ -16,7 +16,8 @@ namespace FossTechCrm.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            return View(db.Products.ToList());
         }
 
         public ActionResult GetProducts()
