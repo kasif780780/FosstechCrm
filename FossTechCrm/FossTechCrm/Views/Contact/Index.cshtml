@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Contacts";
-
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
@@ -50,19 +50,23 @@
 @section scripts
 {
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/notify.min.js"></script>
 
     <script>
         var Popup, dataTable;
         $(document).ready(function () {
             debugger
             dataTable = $('#contactTable').DataTable({
-                
+
                 "ajax": {
                     "url": "/contact/GetData",
                     "type": "GET",
                     "datatype": "json"
                 },
-                
+
                 "columns": [
                     {
                         "data": "Id",
@@ -113,7 +117,7 @@
         function showMessageBox(url) {
             var formDiv = $('<div/>')
             var checked = false;
-           
+
             dataTable.$('input[type="checkbox"]').each(function() {
                 if (this.checked) {
                     checked = true
