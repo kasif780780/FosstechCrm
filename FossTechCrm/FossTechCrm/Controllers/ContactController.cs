@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using FossTechCrm.Models;
 
@@ -92,11 +93,13 @@ namespace FossTechCrm.Controllers
             var numbers = string.Join(",", contactList.ToArray());
 
             String message = HttpUtility.UrlEncode(model.Message);
+            string apikey = WebConfigurationManager.AppSettings["apikey"];
+
             using (var wb = new WebClient())
             {
                 byte[] response = wb.UploadValues("https://api.textlocal.in/send/", new NameValueCollection()
                 {
-                    {"apikey" , "ANwxGF9BUcY-NsHB120pv3egucdvFlQhGGgTuFHJgL"},
+                    {"apikey",apikey},
                     {"numbers" , numbers},
                     {"message" , message},
                     {"sender" , "TXTLCL"}

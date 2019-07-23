@@ -180,29 +180,20 @@
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyLeadController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SMSController.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Lead.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderProduct.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907101659154_initial.cs" />
-    <Compile Include="Migrations\201907101659154_initial.Designer.cs">
-      <DependentUpon>201907101659154_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907142001051_customertable.cs" />
-    <Compile Include="Migrations\201907142001051_customertable.Designer.cs">
-      <DependentUpon>201907142001051_customertable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907142332162_productTable.cs" />
-    <Compile Include="Migrations\201907142332162_productTable.Designer.cs">
-      <DependentUpon>201907142332162_productTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907201958475_addContactTable.cs" />
-    <Compile Include="Migrations\201907201958475_addContactTable.Designer.cs">
-      <DependentUpon>201907201958475_addContactTable.cs</DependentUpon>
+    <Compile Include="Migrations\201907231140390_updateProduct.cs" />
+    <Compile Include="Migrations\201907231140390_updateProduct.Designer.cs">
+      <DependentUpon>201907231140390_updateProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,11 +258,28 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="myjs\bootstrap.js" />
+    <Content Include="myjs\bootstrap.min.js" />
+    <None Include="myjs\jquery-3.3.1.intellisense.js" />
+    <Content Include="myjs\jquery-3.3.1.js" />
+    <Content Include="myjs\jquery-3.3.1.min.js" />
+    <Content Include="myjs\jquery-3.3.1.slim.js" />
+    <Content Include="myjs\jquery-3.3.1.slim.min.js" />
+    <Content Include="myjs\jquery-ui.js" />
+    <None Include="myjs\jquery.validate-vsdoc.js" />
+    <Content Include="myjs\jquery.validate.js" />
+    <Content Include="myjs\jquery.validate.min.js" />
+    <Content Include="myjs\jquery.validate.unobtrusive.js" />
+    <Content Include="myjs\jquery.validate.unobtrusive.min.js" />
+    <Content Include="myjs\modernizr-2.8.3.js" />
+    <Content Include="myjs\notify.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="myjs\jquery-3.3.1.min.map" />
+    <Content Include="myjs\jquery-3.3.1.slim.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -644,6 +652,11 @@
     <Content Include="Views\Contact\SendMessage.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\SMS\SendSms.cshtml" />
+    <Content Include="Views\Product\_Delete.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -692,17 +705,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907101659154_initial.resx">
-      <DependentUpon>201907101659154_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907142001051_customertable.resx">
-      <DependentUpon>201907142001051_customertable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907142332162_productTable.resx">
-      <DependentUpon>201907142332162_productTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907201958475_addContactTable.resx">
-      <DependentUpon>201907201958475_addContactTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907231140390_updateProduct.resx">
+      <DependentUpon>201907231140390_updateProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

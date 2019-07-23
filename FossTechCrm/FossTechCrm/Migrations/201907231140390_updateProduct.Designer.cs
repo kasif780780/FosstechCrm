@@ -7,13 +7,13 @@ namespace FossTechCrm.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class customertable : IMigrationMetadata
+    public sealed partial class updateProduct : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(customertable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateProduct));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907142001051_customertable"; }
+            get { return "201907231140390_updateProduct"; }
         }
         
         string IMigrationMetadata.Source

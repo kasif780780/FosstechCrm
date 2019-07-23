@@ -8,7 +8,8 @@ namespace FossTechCrm.Entities
 {
     public class Customer
     {
-        public int CustomerId { get; set; }
+        
+        public int Id { get; set; }
         [DataType(DataType.Date)]
         public string Date { get; set; }
         public string FirstName { get; set; }

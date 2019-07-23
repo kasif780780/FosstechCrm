@@ -16,10 +16,14 @@ namespace FossTechCrm.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            //return View();
-            return View(db.Products.ToList());
+            return View();
+            //return View(db.Products.ToList());
         }
+        public ActionResult Show(int id)
+        {
 
+            return id == null ? HttpNotFound() : (ActionResult)Json(db.Products.Where(x => x.Id == id).FirstOrDefault(), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult GetProducts()
         {
             var products = db.Products.ToList();
@@ -34,7 +38,7 @@ namespace FossTechCrm.Controllers
             if (id.HasValue) // we trying to edit this record
             {
                 var leadtype = productService.GetProductsbyId(id.Value);
-                model.ProductId = leadtype.ProductId;
+                model.Id = leadtype.Id;
                 model.Description = leadtype.Description;
                 
                 model.IsActive = leadtype.IsActive;
@@ -50,6 +54,8 @@ namespace FossTechCrm.Controllers
                 model.Unit = leadtype.Unit;
                 model.UnitPrice = leadtype.UnitPrice;
                 model.VendorName = leadtype.VendorName;
+                model.HSNCode = leadtype.HSNCode;
+                model.Description = leadtype.Description;
             }
 
             //else // we trying create record
@@ -67,9 +73,9 @@ namespace FossTechCrm.Controllers
 
             JsonResult json = new JsonResult();
             var result = false;
-            if (model.ProductId > 0)
+            if (model.Id > 0)
             {
-                var lead = productService.GetProductsbyId(model.ProductId);
+                var lead = productService.GetProductsbyId(model.Id);
                
 
 
@@ -86,6 +92,8 @@ namespace FossTechCrm.Controllers
              lead.Unit= model.Unit;
              lead.UnitPrice = model.UnitPrice;
              lead.VendorName = model.VendorName;
+                lead.HSNCode = model.HSNCode;
+                lead.Description = model.Description;
 
                 result = productService.UpdateProduct(lead);
             }
@@ -93,7 +101,7 @@ namespace FossTechCrm.Controllers
             else
             {
                 Product lead = new Product();
-                lead.ProductId = model.ProductId;
+                lead.Id = model.Id;
                 lead.IsActive = model.IsActive;
                 lead.IsStock = model.IsStock;
                 lead.Manufacturer = model.Manufacturer;
@@ -107,6 +115,8 @@ namespace FossTechCrm.Controllers
                 lead.Unit = model.Unit;
                 lead.UnitPrice = model.UnitPrice;
                 lead.VendorName = model.VendorName;
+                lead.HSNCode = model.HSNCode;
+                lead.Description = model.Description;
 
                 result = productService.SaveProduct(lead);
             }
@@ -126,10 +136,10 @@ namespace FossTechCrm.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            Lead model = new Lead();
+            Product model = new Product();
 
             var leadtype = productService.GetProductsbyId(id);
-            model.LeadID = leadtype.ProductId;
+            model.Id = leadtype.Id;
 
 
 
@@ -143,7 +153,7 @@ namespace FossTechCrm.Controllers
 
             JsonResult json = new JsonResult();
             var result = false;
-            var lead = productService.GetProductsbyId(model.ProductId);
+            var lead = productService.GetProductsbyId(model.Id);
 
             result = productService.DeleteProduct(lead);
 

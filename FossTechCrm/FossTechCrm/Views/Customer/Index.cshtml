@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
@@ -76,17 +76,17 @@
                 "datatype": "json"
             },
             "columns": [
-                { "data": "CustomerId", "autoWidth": true },
+                { "data": "Id", "autoWidth": true },
                 { "data": "Date", "autoWidth": true },
                 { "data": "LastName", "autoWidth": true },
                 { "data": "FirstName", "autoWidth": true },
                 { "data": "Phone", "autoWidth": true },
                 { "data": "Email", "autoWidth": true },
                 {
-                    "data": "CustomerId", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Customer/Action/' + data +'" >Edit</button>'; }
+                    "data": "Id", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Customer/Action/' + data +'" >Edit</button>'; }
                 },
                 {
-                    "data": "CustomerId", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Customer/Delete/' + data + '" >Delete</button>'; }
+                    "data": "Id", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Customer/Delete/' + data + '" >Delete</button>'; }
                 },
             ]
         })

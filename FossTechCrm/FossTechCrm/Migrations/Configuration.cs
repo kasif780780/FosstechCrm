@@ -9,7 +9,7 @@ namespace FossTechCrm.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(FossTechCrm.Models.ApplicationDbContext context)

@@ -6,7 +6,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-                @if (Model.CustomerId > 0)
+                @if (Model.Id > 0)
                 {
 
                     <span>Edit Lead</span>
@@ -24,7 +24,7 @@
         <div class="modal-body">
             <form id="formAction">
                 <div class="form-row">
-                    <input type="hidden" name="CustomerId" value="@Model.CustomerId" />
+                    <input type="hidden" name="Id" value="@Model.Id" />
                     <div class="form-group col-md-6">
                         <label for="First Name">Name</label>
                         <input class="form-control" name="FirstName" placeholder="Name" value="@Model.FirstName">

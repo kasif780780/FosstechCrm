@@ -1,0 +1,71 @@
+﻿@model FossTechCrm.Entities.Product
+
+<h2>Delete Employee</h2>
+
+@using (Html.BeginForm("delete", "home", FormMethod.Post, new { id = "popupForm" }))
+
+{
+    @Html.HiddenFor(a => a.Id)
+    <div class="form-group">
+        <label>First Name</label>
+        <p>@Model.Description</p>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <p>@Model.HSNCode</p>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <p>@Model.IsActive</p>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <p>@Model.IsStock</p>
+    </div>
+    <div class="form-group">
+        <label>LeadSource</label>
+        <p>@Model.Manufacturer</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.ProductCategory</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.ProductName</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.SalesEndDate</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.SalesStartDate</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.SupportEndDate</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.SupportStartDate</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.Tax</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.Unit</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.UnitPrice</p>
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.VendorName</p>
+    </div>
+
+    <input type="submit" value="Submit" />
+}

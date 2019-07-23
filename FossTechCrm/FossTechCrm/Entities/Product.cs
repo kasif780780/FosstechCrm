@@ -8,15 +8,17 @@ namespace FossTechCrm.Entities
 {
     public class Product
     {
-        public int ProductId { get; set; }
+        public int Id { get; set; }
         public string ProductName { get; set; }
         public string ProductCategory { get; set; }
         public string VendorName { get; set; }
+        public string HSNCode { get; set; }
         public string Manufacturer { get; set; }
         [DataType(DataType.Date)]
         public string SalesEndDate { get; set; }
         [DataType(DataType.Date)]
         public string SalesStartDate { get; set; }
+
         [DataType(DataType.Date)]
         public string SupportStartDate { get; set; }
         [DataType(DataType.Date)]
@@ -25,8 +27,8 @@ namespace FossTechCrm.Entities
         public decimal Tax { get; set; }
         public string Unit { get; set; }
         public string Description { get; set; }
-        public bool? IsStock { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsStock { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }

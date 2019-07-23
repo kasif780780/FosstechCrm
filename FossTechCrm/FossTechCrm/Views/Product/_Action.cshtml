@@ -11,7 +11,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            @if (Model.ProductId > 0)
+            @if (Model.Id > 0)
             {
 
                 <span>Edit Product</span>
@@ -28,7 +28,7 @@
     </div>
     <form id="formAction">
         <div class="form-row ml-4 mr-4">
-            <input type="hidden" name="ProductId" value="@Model.ProductId" />
+            <input type="hidden" name="Id" value="@Model.Id" />
 
             <div class="form-group col-md-4">
                 <label for="First Name">ProductName</label>
@@ -85,24 +85,36 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="Status">IsStock </label>
-                <input class="form-control" name="IsStock" placeholder="Status" value=@Model.IsStock>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="IsStock" type="checkbox" value="@Model.IsStock" id="defaultCheck1">
+
+                </div>
             </div>
 
         </div>
         <div class="form-row ml-4 mr-4">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="First Name">IsActive</label>
-                <input class="form-control" name="IsActive" placeholder="Rating" valu=@Model.IsActive>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Status">Description </label>
-                <input class="form-control" name="Description" placeholder="Status" value=@Model.Description>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="IsActive" type="checkbox" placeholder="Rating" value=@Model.IsActive id="defaultCheck1">
+
+                </div>
             </div>
 
+            <div class="form-group col-md-4">
+                <label for="Status">Tax </label>
+                <input class="form-control" name="HSNCode" placeholder="Status" value=@Model.HSNCode>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Status">Description </label>
+                <textarea class="form-control" rows="5" name="Description" placeholder="Status" value=@Model.Description> </textarea>
+            </div>
         </div>
 
 
-
+      
 
 
     </form>

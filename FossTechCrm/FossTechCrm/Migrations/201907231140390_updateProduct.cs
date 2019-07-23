@@ -3,10 +3,40 @@ namespace FossTechCrm.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class updateProduct : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Contacts",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Number = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Customers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Date = c.String(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Company = c.String(),
+                        Phone = c.String(),
+                        Email = c.String(),
+                        Street = c.String(),
+                        City = c.String(),
+                        State = c.String(),
+                        Zip = c.String(),
+                        Country = c.String(),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.Leads",
                 c => new
@@ -22,6 +52,56 @@ namespace FossTechCrm.Migrations
                         Ratings = c.String(),
                     })
                 .PrimaryKey(t => t.LeadID);
+            
+            CreateTable(
+                "dbo.OrderProducts",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        OrderId = c.Int(nullable: false),
+                        ProductId = c.Int(nullable: false),
+                        Qty = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
+                .Index(t => t.OrderId)
+                .Index(t => t.ProductId);
+            
+            CreateTable(
+                "dbo.Orders",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CustomerId = c.Int(nullable: false),
+                        Date = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
+                .Index(t => t.CustomerId);
+            
+            CreateTable(
+                "dbo.Products",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductName = c.String(),
+                        ProductCategory = c.String(),
+                        VendorName = c.String(),
+                        HSNCode = c.String(),
+                        Manufacturer = c.String(),
+                        SalesEndDate = c.String(),
+                        SalesStartDate = c.String(),
+                        SupportStartDate = c.String(),
+                        SupportEndDate = c.String(),
+                        UnitPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Tax = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Unit = c.String(),
+                        Description = c.String(),
+                        IsStock = c.Boolean(nullable: false),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -99,18 +179,29 @@ namespace FossTechCrm.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.OrderProducts", "ProductId", "dbo.Products");
+            DropForeignKey("dbo.OrderProducts", "OrderId", "dbo.Orders");
+            DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Orders", new[] { "CustomerId" });
+            DropIndex("dbo.OrderProducts", new[] { "ProductId" });
+            DropIndex("dbo.OrderProducts", new[] { "OrderId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Products");
+            DropTable("dbo.Orders");
+            DropTable("dbo.OrderProducts");
             DropTable("dbo.Leads");
+            DropTable("dbo.Customers");
+            DropTable("dbo.Contacts");
         }
     }
 }

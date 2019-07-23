@@ -34,7 +34,7 @@ namespace FossTechCrm.Controllers
             {
                 var leadtype = customerService.GetCustomersbyId(id.Value);
 
-                model.CustomerId = leadtype.CustomerId;
+                model.Id = leadtype.Id;
                 model.Company = leadtype.Company;
                 model.Description = leadtype.Description;
                 model.Email = leadtype.Email;
@@ -63,9 +63,9 @@ namespace FossTechCrm.Controllers
 
             JsonResult json = new JsonResult();
             var result = false;
-            if (model.CustomerId > 0)
+            if (model.Id > 0)
             {
-                var lead = customerService.GetCustomersbyId(model.CustomerId);
+                var lead = customerService.GetCustomersbyId(model.Id);
 
                 lead.Company = model.Company;
                 lead.Description = model.Description;
@@ -86,7 +86,7 @@ namespace FossTechCrm.Controllers
             {
                 Customer customer = new Customer();
 
-                customer.CustomerId = model.CustomerId;
+                customer.Id = model.Id;
                 customer.Date = model.Date;
                 customer.Company = model.Company;
                 customer.Description = model.Description;
@@ -121,7 +121,7 @@ namespace FossTechCrm.Controllers
             Customer model = new Customer();
 
             var leadtype = customerService.GetCustomersbyId(id);
-            model.CustomerId = leadtype.CustomerId;
+            model.Id = leadtype.Id;
 
 
 
@@ -135,7 +135,7 @@ namespace FossTechCrm.Controllers
 
             JsonResult json = new JsonResult();
             var result = false;
-            var lead = customerService.GetCustomersbyId(model.CustomerId);
+            var lead = customerService.GetCustomersbyId(model.Id);
 
             result = customerService.DeleteCustomer(lead);
 

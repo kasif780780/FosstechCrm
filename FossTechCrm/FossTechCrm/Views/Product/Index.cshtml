@@ -27,9 +27,9 @@
 
                                     <div class="col-sm-12">
                                         <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
-                                            @*<thead>
+                                            <thead>
                                                 <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Order #: activate to sort column descending" style="width: 66px;">Order #</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Order #: activate to sort column descending" style="width: 66px;">Id #</th>
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Purchased On: activate to sort column ascending" style="width: 116px;">Product Name</th>
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending" style="width: 82px;">Product Category</th>
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Ship to: activate to sort column ascending" style="width: 63px;">Date</th>
@@ -38,9 +38,9 @@
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 70px;">Action(Edit)</th>
                                                     <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 70px;">Actions(Delete)</th>
                                                 </tr>
-                                            </thead>*@
+                                            @*</thead>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.ProductId)
+                                                @Html.DisplayNameFor(model => model.Id)
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.ProductName)
@@ -53,7 +53,7 @@
                                                         @Html.DisplayFor(modelItem => item.ProductName)
                                                     </td>
                                                 </tr>
-                                            }
+                                            }*@
                                         </table>
                                     </div>
                                 </div>
@@ -70,11 +70,11 @@
 <!-
 <!-- main-panel ends -->
 <!-- Modal -->
-@*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         @Html.Partial("_Action")
     </div>
-</div>*@
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -89,7 +89,7 @@
                 "datatype": "json"
             },
             "columns": [
-                { "data": "ProductId", "autoWidth": true },
+                { "data": "Id", "autoWidth": true },
                 { "data": "ProductName", "autoWidth": true },
                 { "data": "ProductCategory", "autoWidth": true },
                 { "data": "VendorName", "autoWidth": true },
@@ -113,10 +113,10 @@
 
 
                 {
-                    "data": "ProductId", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Product/Action/' + data + '" >Edit</button>'; }
+                    "data": "Id", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Product/Action/' + data + '" >Edit</button>'; }
                 },
                 {
-                    "data": "ProductId", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Lead/Delete/' + data + '" >Delete</button>'; }
+                    "data": "Id", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Product/Delete/' + data + '" >Delete</button>'; }
                 },
             ]
         })
@@ -127,11 +127,11 @@
         $.ajax({
             url: $(this).attr("data-href"),
         })
-        debugger
+    
             .done(function
 
             (response) {
-            $("#exampleModal .modal-dialog").html(response);
+                $("#exampleModal .modal-dialog.modal-lg").html(response);
         })
     })
 
