@@ -1,5 +1,6 @@
 ﻿using FossTechCrm.Entities;
 using FossTechCrm.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,34 @@ namespace FossTechCrm.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Orders
-        public ActionResult Index()
+        public ActionResult Index( string currentFilter, string searchString, int? page)
         {
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
+            ViewBag.CurrentFilter = searchString;
             List<Customer> customers = db.Customers.ToList();
+           
             IList<Order> orders = db.Orders.ToList();
-            IList<Product> products = db.Products.ToList();
+            var doctors = from s in orders select  s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                doctors = doctors.Where(s => s.Customer.Company.Contains(searchString) || s.Customer.LastName.Contains(searchString));
+            }
+
+            IList <Product> products = db.Products.ToList();
             ViewData["customers"] = customers;
             ViewData["products"] = products;
-            return View(orders);
+          // return View(orders);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(doctors.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Doctors/Details/5
