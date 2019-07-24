@@ -85,44 +85,50 @@
             <th scope="col" colspan="2">
                 CGST %
 
+
             </th>
             <th scope="col" colspan="2">SGST %</th>
-            
-       
+
+
             <th scope="col" rowspan="2">Amount</th>
 
         </tr>
-        @{
-            decimal totalBill = 0;
-           
-            decimal cgst = 0;
-            decimal cgstTax = 0;
-            decimal sgst = 0;
-            decimal sgstTax = 0;
-            decimal balanceDue = 0;
-
-
-        }
-        @foreach (var product in Model.Products)
-        {
-            cgstTax =(product.Product.Tax / 2);
-            sgstTax = (product.Product.Tax / 2);
-            cgst = (product.Product.UnitPrice * cgstTax/100);
-            sgst = (product.Product.UnitPrice * sgstTax / 100);
         <tr>
             <th>%</th>
             <th>Amount </th>
             <th>%</th>
             <th>Amount </th>
-            
+
 
         </tr>
+        @{
+            decimal totalBill = 0;
+
+            decimal cgst = 0;
+            decimal cgstTax = 0;
+            decimal sgst = 0;
+            decimal sgstTax = 0;
+            decimal balanceDue = 0;
+            decimal NetGST = 0;
+            decimal Netsgst = 0;
+            decimal netcgst = 0;
+
+
+        }
+        @foreach (var product in Model.Products)
+        {
+            cgstTax = (product.Product.Tax / 2);
+            sgstTax = (product.Product.Tax / 2);
+            cgst = ((product.Product.UnitPrice * product.Qty) * cgstTax / 100);
+            sgst = ((product.Product.UnitPrice * product.Qty) * sgstTax / 100);
+
+
             <tr>
                 <td>@product.Product.Id</td>
                 <td>@product.Product.ProductName</td>
                 <td>@product.Qty</td>
                 <td>@product.Product.UnitPrice</td>
-                <td>@(product.Product.Tax/2) %</td>
+                <td>@(product.Product.Tax / 2) %</td>
                 <td>@cgst </td>
                 <td>@(product.Product.Tax / 2) %</td>
                 <td>@sgst </td>
@@ -130,15 +136,24 @@
             </tr>
 
             totalBill += (product.Product.UnitPrice * product.Qty);
-            balanceDue = (totalBill + cgst + sgst);
+
+            NetGST = totalBill * (product.Product.Tax / 100);
+            Netsgst = NetGST / 2;
+            netcgst = Netsgst;
+            balanceDue = (totalBill + netcgst + Netsgst);
+        }
+
+        @{
+
         }
         <tr>
             <td colspan="6"> <b>Rupees</b>  <p id="inWords" style="display:inline;font-size:large;font-weight:700;"></p> <span style="font-size:large;font-weight:600"> Only . </span></td>
             <td colspan="3">
+
                 SubTotal :<div id="totalBill" style="display:inline;">@totalBill</div>
-                          <div>CGST : @cgst</div>
-                          <div>SGST : @sgst</div>
-                          <div style="font-size:large">Balance Due : @balanceDue</div>
+                <div>SGST : @Netsgst</div>
+                <div>CGST : @netcgst</div>
+                Balance Due:     <div style="font-size:large" id="balanceDue"> @balanceDue</div>
 
 
             </td>
@@ -172,7 +187,7 @@
         str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
         return str;
     }
-    document.getElementById("inWords").innerHTML = inWords(parseFloat(document.getElementById("totalBill").innerText));
+        document.getElementById("inWords").innerHTML = inWords(parseFloat(document.getElementById("balanceDue").innerText));
     </script>
 
 </body>
