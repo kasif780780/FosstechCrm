@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  >
+  
     <style>
         .row {
             border: 1px solid;
@@ -21,7 +21,7 @@
 <body>
     <table class="table table-bordered">
         <tr>
-            <td colspan="3">
+            <td colspan="6">
                 <h2>Fosstech India Private Ltd.</h2>
                 <p class="text-justify">
                     Company Id : 27DAGPS0497Q1ZQ <br />
@@ -35,31 +35,31 @@
 
 
             </td>
-            <td colspan="2">Tax Invoice</td>
+            <td colspan="5">Tax Invoice</td>
         </tr>
         <tr>
-            <th scope="row" colspan="3">
+            <th scope="row" colspan="6">
                 <p>#                   <span style="margin-left:180px;">:Inv003</span></p>
                 <p>Invoice Date        <span style="margin-left:90px;">:12/09/2019</span></p>
                 <p>Terms               <span style="margin-left:140px;">:Due on Reciept</span></p>
                 <p>Due Date            <span style="margin-left:114px;">:12 /09/2019</span></p>
             </th>
-            <td colspan="2">Place Of Supply <span></span></td>
+            <td colspan="5">Place Of Supply <span></span></td>
 
 
         </tr>
         <tr>
-            <th scope="col" colspan="3">
+            <th scope="col" colspan="6">
                 Bill To :
             </th>
 
 
-            <th scope="col" colspan="2">
+            <th scope="col" colspan="5">
                 Ship To :
             </th>
         </tr>
         <tr>
-            <td colspan="3">
+            <td colspan="6">
                 <h5>CustomerCompany</h5>
                 Company Id : 27DAGPS0497Q1ZQ <br />
                 Office No 13 Grd Floor<br />
@@ -68,7 +68,7 @@
                 India
                 GSTIN 27DAGPS0497Q1ZQ
             </td>
-            <td colspan="2">
+            <td colspan="6">
 
                 Office No 13 Grd Floor<br />
                 S.V Road Jogeshwari West Contact 7678078043<br />
@@ -78,32 +78,102 @@
             </td>
         </tr>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Item & Description</th>
-            <th scope="col">Qty</th>
-            <th scope="col">Rate</th>
-            <th scope="col">Amount</th>
+            <th scope="col" rowspan="2">#</th>
+            <th scope="col" rowspan="2">Item & Description</th>
+            <th scope="col" rowspan="2">Qty</th>
+            <th scope="col" rowspan="2">Rate</th>
+            <th scope="col" colspan="2">
+                CGST %
+
+            </th>
+            <th scope="col" colspan="2">SGST %</th>
+            
+       
+            <th scope="col" rowspan="2">Amount</th>
+
         </tr>
         @{
             decimal totalBill = 0;
+           
+            decimal cgst = 0;
+            decimal cgstTax = 0;
+            decimal sgst = 0;
+            decimal sgstTax = 0;
+            decimal balanceDue = 0;
+
+
         }
         @foreach (var product in Model.Products)
         {
+            cgstTax =(product.Product.Tax / 2);
+            sgstTax = (product.Product.Tax / 2);
+            cgst = (product.Product.UnitPrice * cgstTax/100);
+            sgst = (product.Product.UnitPrice * sgstTax / 100);
+        <tr>
+            <th>%</th>
+            <th>Amount </th>
+            <th>%</th>
+            <th>Amount </th>
+            
+
+        </tr>
             <tr>
                 <td>@product.Product.Id</td>
                 <td>@product.Product.ProductName</td>
                 <td>@product.Qty</td>
                 <td>@product.Product.UnitPrice</td>
+                <td>@(product.Product.Tax/2) %</td>
+                <td>@cgst </td>
+                <td>@(product.Product.Tax / 2) %</td>
+                <td>@sgst </td>
                 <td>@(product.Product.UnitPrice * product.Qty)</td>
             </tr>
-            totalBill += (product.Product.UnitPrice * product.Qty);
-        }
 
+            totalBill += (product.Product.UnitPrice * product.Qty);
+            balanceDue = (totalBill + cgst + sgst);
+        }
+        <tr>
+            <td colspan="6"> <b>Rupees</b>  <p id="inWords" style="display:inline;font-size:large;font-weight:700;"></p> <span style="font-size:large;font-weight:600"> Only . </span></td>
+            <td colspan="3">
+                SubTotal :<div id="totalBill" style="display:inline;">@totalBill</div>
+                          <div>CGST : @cgst</div>
+                          <div>SGST : @sgst</div>
+                          <div style="font-size:large">Balance Due : @balanceDue</div>
+
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <p>
+                    HDFC BANK AC NO. 50200033545966 Branch Sahar Road Junction RTGS IFSC CODE HDFC0000668
+                    Terms & Conditions Terms & Condition Apply
+                </p>
+            </td>
+            <td colspan="4"> Signature</td>
+        </tr>
 
     </table>
     <p>
-        
+
     </p>
-    
+    <script type="text/javascript">
+    var a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+    var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+    function inWords(num) {
+        if ((num = num.toString()).length > 9) return 'overflow';
+        n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+        if (!n) return; var str = '';
+        str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+        str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+        str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+        str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+        str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+        return str;
+    }
+    document.getElementById("inWords").innerHTML = inWords(parseFloat(document.getElementById("totalBill").innerText));
+    </script>
+
 </body>
 </html>
