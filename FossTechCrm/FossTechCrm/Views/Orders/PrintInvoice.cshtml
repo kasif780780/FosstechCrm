@@ -1,0 +1,109 @@
+﻿@model FossTechCrm.Entities.Order
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  >
+    <style>
+        .row {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <table class="table table-bordered">
+        <tr>
+            <td colspan="3">
+                <h2>Fosstech India Private Ltd.</h2>
+                <p class="text-justify">
+                    Company Id : 27DAGPS0497Q1ZQ <br />
+
+                    Office No 13 Grd Floor<br />
+                    S.V Road Jogeshwari West Contact 7678078043<br />
+                    Mumbai Maharashtra<br />
+                    India<br />
+                    GSTIN 27DAGPS0497Q1ZQ
+                </p>
+
+
+            </td>
+            <td colspan="2">Tax Invoice</td>
+        </tr>
+        <tr>
+            <th scope="row" colspan="3">
+                <p>#                   <span style="margin-left:180px;">:Inv003</span></p>
+                <p>Invoice Date        <span style="margin-left:90px;">:12/09/2019</span></p>
+                <p>Terms               <span style="margin-left:140px;">:Due on Reciept</span></p>
+                <p>Due Date            <span style="margin-left:114px;">:12 /09/2019</span></p>
+            </th>
+            <td colspan="2">Place Of Supply <span></span></td>
+
+
+        </tr>
+        <tr>
+            <th scope="col" colspan="3">
+                Bill To :
+            </th>
+
+
+            <th scope="col" colspan="2">
+                Ship To :
+            </th>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <h5>CustomerCompany</h5>
+                Company Id : 27DAGPS0497Q1ZQ <br />
+                Office No 13 Grd Floor<br />
+                S.V Road Jogeshwari West Contact 7678078043<br />
+                Mumbai Maharashtra
+                India
+                GSTIN 27DAGPS0497Q1ZQ
+            </td>
+            <td colspan="2">
+
+                Office No 13 Grd Floor<br />
+                S.V Road Jogeshwari West Contact 7678078043<br />
+                Mumbai Maharashtra
+                India
+                GSTIN 27DAGPS0497Q1ZQ
+            </td>
+        </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item & Description</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Amount</th>
+        </tr>
+        @{
+            decimal totalBill = 0;
+        }
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Product.Id</td>
+                <td>@product.Product.ProductName</td>
+                <td>@product.Qty</td>
+                <td>@product.Product.UnitPrice</td>
+                <td>@(product.Product.UnitPrice * product.Qty)</td>
+            </tr>
+            totalBill += (product.Product.UnitPrice * product.Qty);
+        }
+
+
+    </table>
+    <p>
+        
+    </p>
+    
+</body>
+</html>

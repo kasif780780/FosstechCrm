@@ -46,6 +46,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NickBuhro.NumToWords, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NickBuhro.NumToWords.1.0.0\lib\net45\NickBuhro.NumToWords.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.Core.2.0.0\lib\net45\Rotativa.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Rotativa.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.MVC.2.0.3\lib\net45\Rotativa.MVC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -260,6 +272,7 @@
     <Content Include="Global.asax" />
     <Content Include="myjs\bootstrap.js" />
     <Content Include="myjs\bootstrap.min.js" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="myjs\jquery-3.3.1.intellisense.js" />
     <Content Include="myjs\jquery-3.3.1.js" />
     <Content Include="myjs\jquery-3.3.1.min.js" />
@@ -267,12 +280,17 @@
     <Content Include="myjs\jquery-3.3.1.slim.min.js" />
     <Content Include="myjs\jquery-ui.js" />
     <None Include="myjs\jquery.validate-vsdoc.js" />
+    <Content Include="myjs\jquery.num2words.js" />
     <Content Include="myjs\jquery.validate.js" />
     <Content Include="myjs\jquery.validate.min.js" />
     <Content Include="myjs\jquery.validate.unobtrusive.js" />
     <Content Include="myjs\jquery.validate.unobtrusive.min.js" />
     <Content Include="myjs\modernizr-2.8.3.js" />
     <Content Include="myjs\notify.min.js" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -657,6 +675,7 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Invoice.cshtml" />
+    <Content Include="Views\Orders\PrintInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

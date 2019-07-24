@@ -56,6 +56,17 @@ namespace FossTechCrm.Controllers
             Order order = db.Orders.Where(x => x.Id == id).FirstOrDefault();
             return View(order);
         }
+        public ActionResult PrintInvoice(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            Order order = db.Orders.Where(x => x.Id == id).FirstOrDefault();
+            return new Rotativa.ViewAsPdf("PrintInvoice",order);
+        }
 
         public async Task<ActionResult> SaveOrder(OrderViewModel order)
         {
