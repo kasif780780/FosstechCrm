@@ -1,0 +1,30 @@
+﻿
+@model FossTechCrm.ViewModels.UserListingModels
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+@if (Model.Roles != null && Model.Roles.Count() > 0)
+    {
+        <select name="AccomodationPackageID" class="form-control">
+            <option value="0">
+                Select Accomodation Package
+            </option>
+            @foreach (var role in Model.Roles)
+            {
+                <option value="@role.Id" @(role.Id == Model.RoleID ? "selected" : string.Empty)>
+                    @role.Name
+                </option>
+            }
+        </select>
+    }
+
+    @Html.Partial("_Listing")
+</body>
+</html>
+. 

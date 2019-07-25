@@ -1,0 +1,120 @@
+﻿@model FossTechCrm.ViewModels.UserListingModels
+
+
+
+
+
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Users</h4>
+                    <button data-href="/Customer/Action" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Create
+                    </button>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                                    <div class="col-sm-12">
+                                        @if (Model != null && Model.Users != null && Model.Users.Count() > 0)
+                                        {
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">UserName</th>
+                                                        <th scope="col">Role</th>
+                                                        <th scope="col">Action</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var user in Model.Users)
+                                                    {
+                                                        <tr>
+                                                            <td>@user.Email</td>
+                                                            <td>@user.UserName</td>
+                                                            <td></td>
+                                                            <td>
+                                                                <button data-href="@Url.Action("Action","Accomodation",new {ID=user.Id})"></button>
+                                                                <button data-href="@Url.Action("Delete","Accomodation",new {ID=user.Id})"></button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+
+                                        }
+                                        else
+                                        {
+                                            <p>Sorry No Records</p>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card " style="margin-top:20px;">
+                                @if (Model.Pager.EndPage > 1)
+                                {
+
+                                    <nav>
+                                        <ul class="pagination pagination-rounded-flat pagination-success">
+                                            @if (Model.Pager.CurrentPage > 1)
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-item" href="@Url.Action("Index","Users",new {page=1,searchTerm=Model.SearchTerm,RoleID=Model.RoleID }))">
+
+                                                    </a>
+                                                </li>
+
+                                                <li class="page-item">
+                                                    <a class="page-link" href="@Url.Action("Index","Users",new {page=Model.Pager.CurrentPage-1,searchTerm=Model.SearchTerm,RoleID=Model.RoleID })">
+                                                        <i class="fa fa-angle-double-left"></i>
+                                                    </a>
+                                                </li>
+                                            }
+
+                                            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                                            {
+                                                <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
+                                                    <a class="page-link" href="@Url.Action("Index","Users",new {page=page,searchTerm=Model.SearchTerm,RoleID=Model.RoleID })">@page</a>
+
+                                                </li>
+                                            }
+
+                                            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-link" href="@Url.Action("Index","Users",new {page=Model.Pager.CurrentPage+1 })">
+                                                        Next
+                                                        <i class="fa fa-angle-double-left"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li class="page-item">
+                                                    <a class="page-link" href="@Url.Action("Index","Users",new { page=Model.Pager.TotalPages})">
+
+                                                        Last
+                                                        <i class="fa fa-angle-double-left"></i>
+                                                    </a>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </nav>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

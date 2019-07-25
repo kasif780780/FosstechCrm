@@ -201,7 +201,9 @@
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SMSController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\HMSUser.cs" />
     <Compile Include="Entities\Lead.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderProduct.cs" />
@@ -221,10 +223,14 @@
     <Compile Include="Models\SMSViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\HMSSignInManager.cs" />
+    <Compile Include="Services\HMSUserManager.cs" />
     <Compile Include="Services\LeadService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LeadListingsModel.cs" />
+    <Compile Include="ViewModels\PageViewModels.cs" />
+    <Compile Include="ViewModels\UserViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -683,6 +689,8 @@
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Invoice.cshtml" />
     <Content Include="Views\Orders\PrintInvoice.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\_Listing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
