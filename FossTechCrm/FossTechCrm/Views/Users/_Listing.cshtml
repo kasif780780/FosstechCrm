@@ -5,59 +5,78 @@
 
 
 
+
+
+
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Users</h4>
-                    <button data-href="/Customer/Action" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Create
-                    </button>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="table-responsive">
-                                <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
-                                    <div class="col-sm-12">
-                                        @if (Model != null && Model.Users != null && Model.Users.Count() > 0)
-                                        {
-                                            <table class="table table-bordered">
-                                                <thead>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Users</h4>
+                                <ul>
+                                    <li>
+                                        <form>
+                                            <div class="input-group">
+
+                                                <input type="text" name="searchterm" value="@Model.SearchTerm" class="form-control" placeholder="search" aria-label="search" aria-describedby="search"><div class="input-group-prepend">
+                                                    <button class="input-group-text" type="submit" id="search">
+                                                        <i class="mdi mdi-magnify"></i>
+                                                    </button>
+                                                    <a class="btn btn-primary" href="/Users/Index">Reset</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                                <div class="table-responsive">
+                                    @if (Model != null && Model.Users != null && Model.Users.Count() > 0)
+                                    {
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        User
+                                                    </th>
+                                                    <th>
+                                                        First name
+                                                    </th>
+                                                    <th>
+                                                        Role
+                                                    </th>
+                                                    <th>
+                                                        Action
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var user in Model.Users)
+                                                {
                                                     <tr>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col">UserName</th>
-                                                        <th scope="col">Role</th>
-                                                        <th scope="col">Action</th>
 
+                                                        <td>@user.Email</td>
+                                                        <td>@user.UserName</td>
+                                                        <td></td>
+                                                        <td>
+                                                            <button data-href="@Url.Action("Action", "Accomodation", new { ID = user.Id })"></button>
+                                                            <button data-href="@Url.Action("Delete", "Accomodation", new { ID = user.Id })"></button>
+                                                        </td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (var user in Model.Users)
-                                                    {
-                                                        <tr>
-                                                            <td>@user.Email</td>
-                                                            <td>@user.UserName</td>
-                                                            <td></td>
-                                                            <td>
-                                                                <button data-href="@Url.Action("Action","Accomodation",new {ID=user.Id})"></button>
-                                                                <button data-href="@Url.Action("Delete","Accomodation",new {ID=user.Id})"></button>
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
-
-                                        }
-                                        else
-                                        {
-                                            <p>Sorry No Records</p>
-                                        }
-
-                                    </div>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else
+                                    {
+                                        <p>No Records</p>
+                                    }
                                 </div>
-                            </div>
-                            <div class="card " style="margin-top:20px;">
+
                                 @if (Model.Pager.EndPage > 1)
                                 {
 
@@ -107,14 +126,11 @@
                                         </ul>
                                     </nav>
                                 }
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
 </div>
-
-

@@ -52,7 +52,7 @@ namespace FossTechCrm.Controllers
         // GET: Users
         public ActionResult Index(string searchTerm, int? page, string roleID)
         {
-            int recordSize = 2;
+            int recordSize = 5;
             page = page ?? 1;
           UserListingModels model = new UserListingModels();
             model.SearchTerm = searchTerm;
