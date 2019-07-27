@@ -9,7 +9,7 @@
     <title>Index</title>
 </head>
 <body>
-@if (Model.Roles != null && Model.Roles.Count() > 0)
+    @if (Model.Roles != null && Model.Roles.Count() > 0)
     {
         <select name="AccomodationPackageID" class="form-control">
             <option value="0">
@@ -23,8 +23,29 @@
             }
         </select>
     }
-
+ 
     @Html.Partial("_Listing")
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $('#order-listing').on("click", ".data-btn", function (event) {
+
+            event.preventDefault();
+
+            $.ajax({
+                url: $(this).attr("data-href"),
+            })
+                .done(function
+                    (response) {
+                    $("#exampleModal .modal-dialog").html(response);
+                })
+        });
+    </script>
 </body>
 </html>
 . 

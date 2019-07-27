@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201907231140390_updateProduct.Designer.cs">
       <DependentUpon>201907231140390_updateProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907260158585_addPropertytoApplicationUser.cs" />
+    <Compile Include="Migrations\201907260158585_addPropertytoApplicationUser.Designer.cs">
+      <DependentUpon>201907260158585_addPropertytoApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -691,6 +695,9 @@
     <Content Include="Views\Orders\PrintInvoice.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\_Listing.cshtml" />
+    <Content Include="Views\Users\_Action.cshtml" />
+    <Content Include="Views\Users\_Delete.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -741,6 +748,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201907231140390_updateProduct.resx">
       <DependentUpon>201907231140390_updateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907260158585_addPropertytoApplicationUser.resx">
+      <DependentUpon>201907260158585_addPropertytoApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

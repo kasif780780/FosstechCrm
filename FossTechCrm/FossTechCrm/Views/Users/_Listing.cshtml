@@ -7,7 +7,6 @@
 
 
 
-
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
@@ -17,7 +16,8 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Users</h4>
+                                <button data-href="/Users/Action" class="data-btn btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i>Create</button>
+                                @*<button data-href="/Product/Action" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#exampleModal"></button>*@
                                 <ul>
                                     <li>
                                         <form>
@@ -63,8 +63,8 @@
                                                         <td>@user.UserName</td>
                                                         <td></td>
                                                         <td>
-                                                            <button data-href="@Url.Action("Action", "Accomodation", new { ID = user.Id })"></button>
-                                                            <button data-href="@Url.Action("Delete", "Accomodation", new { ID = user.Id })"></button>
+                                                            <button class="data-btn btn btn-success" data-href="@Url.Action("Action", "Users", new { ID = user.Id }) " data-toggle="modal" data-target="#exampleModal">Edit</button>
+                                                            <button class="data-btn btn btn-danger" data-href="@Url.Action("Delete", "Users", new { ID = user.Id })" data-toggle="modal" data-target="#exampleModal">Delete</button>
                                                         </td>
                                                     </tr>
                                                 }
@@ -85,7 +85,7 @@
                                             @if (Model.Pager.CurrentPage > 1)
                                             {
                                                 <li class="page-item">
-                                                    <a class="page-item" href="@Url.Action("Index","Users",new {page=1,searchTerm=Model.SearchTerm,RoleID=Model.RoleID }))">
+                                                    <a class="page-item" href="@Url.Action("Index","Users",new {page=1,searchTerm=Model.SearchTerm,RoleID=Model.RoleID })">
 
                                                     </a>
                                                 </li>
@@ -131,6 +131,47 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(".data-btn").click(function () {
+
+        $.ajax({
+            url: $(this).attr("data-href"),
+        })
+
+            .done(function
+
+                (response) {
+                $("#exampleModal .modal-dialog").html(response);
+            })
+    })
+
+    // $(".data-btn").click(function () {
+
+    //    $.ajax({
+    //        url: $(this).attr("data-href"),
+    //    })
+    //        .done(function
+    //            (response) {
+    //            $("#exampleModal .modal-dialog").html(response);
+    //        })
+    //})
+
+    $('#order-listing').on("click", ".data-btn", function (event) {
+
+        event.preventDefault();
+
+        $.ajax({
+            url: $(this).attr("data-href"),
+        })
+            .done(function
+                (response) {
+                $("#exampleModal .modal-dialog").html(response);
+            })
+    });
+</script>
+

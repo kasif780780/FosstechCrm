@@ -1,10 +1,12 @@
 ﻿using FossTechCrm.Models;
 using FossTechCrm.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -112,6 +114,103 @@ namespace FossTechCrm.Controllers
             //}
 
             return users.Count();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Action(string ID)
+        {
+            UserActionModel model = new UserActionModel();
+            if(!string.IsNullOrEmpty(ID))
+            {
+                var user = await UserManager.FindByIdAsync(ID);
+
+                model.ID = user.Id;
+                model.FullName = user.FullName;
+                model.Email = user.Email;
+                model.UserName = user.UserName;
+                model.Country = user.Country;
+                model.City = user.City;
+                model.Address = user.Address;
+            }
+            // model.Role = accomodationPS.GetAllaCOMOdationPS();
+            return PartialView("_Action", model);   
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> Action(UserActionModel model)
+        {
+
+
+            JsonResult json = new JsonResult();
+            IdentityResult result = null;
+            if (!string.IsNullOrEmpty(model.ID) )
+            {
+                var user = await UserManager.FindByIdAsync(model.ID);
+
+                user.FullName = model.FullName;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.Country = model.Country;
+                user.City = model.City;
+                user.Address = model.Address;
+
+                result = await UserManager.UpdateAsync(user);
+               
+            }
+
+            else
+            {
+                var user = new ApplicationUser();
+
+                user.FullName = model.FullName;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.Country = model.Country;
+                user.City = model.City;
+                user.Address = model.Address;
+
+                result = await UserManager.CreateAsync(user);
+            }
+
+            json.Data = new { Success = result.Succeeded, Message = string.Join(",", result.Errors) };
+            return json;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Delete(string ID)
+        {
+            UserActionModel model = new UserActionModel();
+            var user = await UserManager.FindByIdAsync(ID);
+            model.ID = user.Id;
+            return PartialView("_Delete", model);
+
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Delete(UserActionModel model)
+        {
+            JsonResult json = new JsonResult();
+            IdentityResult result = null;
+            if (!string.IsNullOrEmpty(model.ID))
+            {
+                var user = await UserManager.FindByIdAsync(model.ID);
+
+                user.FullName = model.FullName;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.Country = model.Country;
+                user.City = model.City;
+                user.Address = model.Address;
+
+                result = await UserManager.DeleteAsync(user);
+                json.Data = new { Success = result.Succeeded, Message = string.Join(",", result.Errors) };
+            }
+            else
+            {
+                json.Data = new { Success = false, Message = "Invalid user" };
+            }
+            return json;
         }
     }
 }
