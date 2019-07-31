@@ -1,4 +1,5 @@
 ﻿using FossTechCrm.Models;
+using FossTechCrm.Services;
 using FossTechCrm.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -16,15 +17,16 @@ namespace FossTechCrm.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private FosstechRoleManager _roleManager;
         public UsersController()
         {
         }
 
-        public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,FosstechRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -51,6 +53,17 @@ namespace FossTechCrm.Controllers
             }
         }
 
+        public FosstechRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<FosstechRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
         // GET: Users
         public ActionResult Index(string searchTerm, int? page, string roleID)
         {
@@ -59,7 +72,7 @@ namespace FossTechCrm.Controllers
           UserListingModels model = new UserListingModels();
             model.SearchTerm = searchTerm;
             model.RoleID = roleID;
-            //model.Roles = accomodationService.GetAllAccomodation();
+            model.Roles = RoleManager.Roles.ToList();
 
             model.Users = SearchUsers(searchTerm,roleID,page.Value,recordSize);
 
@@ -210,6 +223,61 @@ namespace FossTechCrm.Controllers
             {
                 json.Data = new { Success = false, Message = "Invalid user" };
             }
+            return json;
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult> UserRoles(string ID)
+        {
+           
+
+           UserRolesModel model = new UserRolesModel();
+            var user = await UserManager.FindByIdAsync(ID);
+            model.Roles = RoleManager.Roles.ToList();
+            var userRolesIDs = user.Roles.Select(x => x.RoleId).ToList();
+            model.UserRoles = RoleManager.Roles.Where(x => userRolesIDs.Contains(x.Id)).ToList();
+            return PartialView("_UserRoles", model);
+        }
+
+
+        [HttpPost]
+        public async Task<JsonResult> UserRoles(UserActionModel model)
+        {
+
+
+            JsonResult json = new JsonResult();
+            IdentityResult result = null;
+            if (!string.IsNullOrEmpty(model.ID))
+            {
+                var user = await UserManager.FindByIdAsync(model.ID);
+
+                user.FullName = model.FullName;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.Country = model.Country;
+                user.City = model.City;
+                user.Address = model.Address;
+
+                result = await UserManager.UpdateAsync(user);
+
+            }
+
+            else
+            {
+                var user = new ApplicationUser();
+
+                user.FullName = model.FullName;
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.Country = model.Country;
+                user.City = model.City;
+                user.Address = model.Address;
+
+                result = await UserManager.CreateAsync(user);
+            }
+
+            json.Data = new { Success = result.Succeeded, Message = string.Join(",", result.Errors) };
             return json;
         }
     }

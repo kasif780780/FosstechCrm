@@ -35,4 +35,12 @@ namespace FossTechCrm.ViewModels
         //public IdentityRole Role { get; set; }
         //public IEnumerable<IdentityRole> Roles { get; set; }
     }
+
+    public class UserRolesModel
+    {
+       public IEnumerable<IdentityRole> UserRoles { get; set; }
+        public IEnumerable<IdentityRole> Roles { get; set; }
+
+
+    }
 }
