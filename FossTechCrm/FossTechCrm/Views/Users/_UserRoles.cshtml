@@ -8,7 +8,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModal">
-             <span>User Roles</span>
+             <span>User's Roles</span>
 
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -18,7 +18,7 @@
         <div class="modal-body">
             @if (Model.UserRoles != null && Model.UserRoles.Count() > 0)
             {
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -30,7 +30,7 @@
                         {
                             <tr>
                                 <td>@role.Name</td>
-                                <td> <button class="data-btn btn btn-danger" data-href="@Url.Action("DeleteUserRole", "Users", new { ID = role.Id })" data-toggle="modal" data-target="#exampleModal">Delete</button></td>
+                                <td> <button class="btnRoleOperation btn btn-danger" data-href="@Url.Action("UserRoleOperation", "Users", new {userID=Model.UserID, roleID = role.Id,isDelete=true })" >Delete</button></td>
                             </tr>
                         }
                     </tbody>
@@ -41,6 +41,7 @@
                 <div class="alert alert-warning" role="alert">
                     this User Has No Roles
                 </div>
+                <hr />
             }
 
             @if (Model.Roles != null && Model.Roles.Count() > 0)
@@ -57,18 +58,14 @@
                         {
                             <tr>
                                 <td>@role.Name</td>
-                                <td> <button class="data-btn btn btn-success" data-href="@Url.Action("AssignUserRole", "Users", new { ID = role.Id })" data-toggle="modal" data-target="#exampleModal">Assign</button></td>
+                                <td> <button class="btnRoleOperation btn btn-success" data-href="@Url.Action("UserRoleOperation", "Users", new {  userID=Model.UserID, roleID = role.Id })">Assign</button></td>
                             </tr>
                         }
                     </tbody>
                 </table>
             }
-            else
-            {
-                <div class="alert alert-warning" role="alert">
-                     No Roles Available
-                </div>
-            }
+           
+            
 
             <div class="errorDiv"></div>
         </div>
@@ -84,6 +81,32 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+    $(".btnRoleOperation").click(function () {
+
+        $.ajax({
+            url: $(this).attr("data-href"),
+            type:"POST"
+        })
+            .done(function
+                (response) {
+                if (response.Success) {
+                    debugger;
+                    $.ajax({
+                        url: "@Url.Action("UserRoles", "Users", new { ID=Model.UserID})",
+
+                    })
+                        .done(function
+                            (response) {
+                            $("#exampleModal .modal-dialog").html(response);
+                        })
+                }
+                else {
+                    alert(response.Message);
+                }
+            })
+    })
+
+
     $("#ActionButton").click(function () {
          $.ajax({
              url: '@Url.Action("Action","Users")',

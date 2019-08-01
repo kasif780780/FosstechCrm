@@ -22,7 +22,7 @@
                                     <li>
                                         <form>
                                             <div class="input-group">
-
+                                               
                                                 <input type="text" name="searchterm" value="@Model.SearchTerm" class="form-control" placeholder="search" aria-label="search" aria-describedby="search"><div class="input-group-prepend">
                                                     <button class="input-group-text" type="submit" id="search">
                                                         <i class="mdi mdi-magnify"></i>
@@ -39,11 +39,12 @@
                                         <table class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
+                                                    <th>Full Name</th>
                                                     <th>
-                                                        User
+                                                        Email
                                                     </th>
                                                     <th>
-                                                        First name
+                                                        User Name
                                                     </th>
                                                     <th>
                                                         Role
@@ -58,10 +59,10 @@
                                                 @foreach (var user in Model.Users)
                                                 {
                                                     <tr>
-
+                                                        <td>@user.FullName</td>
                                                         <td>@user.Email</td>
                                                         <td>@user.UserName</td>
-                                                        <td></td>
+                                                        <td>@user.Roles.Count</td>
                                                         <td>
                                                             <button class="data-btn btn btn-success" data-href="@Url.Action("Action", "Users", new { ID = user.Id }) " data-toggle="modal" data-target="#exampleModal">Edit</button>
                                                             <button class="data-btn btn btn-danger" data-href="@Url.Action("Delete", "Users", new { ID = user.Id })" data-toggle="modal" data-target="#exampleModal">Delete</button>

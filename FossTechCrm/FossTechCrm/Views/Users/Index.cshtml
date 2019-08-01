@@ -9,21 +9,8 @@
     <title>Index</title>
 </head>
 <body>
-    @if (Model.Roles != null && Model.Roles.Count() > 0)
-    {
-        <select name="AccomodationPackageID" class="form-control">
-            <option value="0">
-                Select Accomodation Package
-            </option>
-            @foreach (var role in Model.Roles)
-            {
-                <option value="@role.Id" @(role.Id == Model.RoleID ? "selected" : string.Empty)>
-                    @role.Name
-                </option>
-            }
-        </select>
-    }
- 
+   
+
     @Html.Partial("_Listing")
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

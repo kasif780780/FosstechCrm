@@ -7,6 +7,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -98,13 +99,9 @@ namespace FossTechCrm.Controllers
 
             if (!string.IsNullOrEmpty(roleID))
             {
-                //users = users.Where(a => a.Email.ToLower().Contains(searchTerm.ToLower()));
+                users = users.Where(x => x.Roles.Select(y => y.RoleId).Contains(roleID));
             }
-            //if (accPacid.HasValue && accpacid.value>0)
-
-            //{
-            //    acc = acc.where(a => a.AccomdID == accpacid.Value);
-            //}
+           
             var skip = (page - 1) * recordSize;
             return users.OrderBy(x=>x.Email).Skip(skip).Take(recordSize).ToList();
         }
@@ -233,14 +230,19 @@ namespace FossTechCrm.Controllers
            
 
            UserRolesModel model = new UserRolesModel();
-            var user = await UserManager.FindByIdAsync(ID);
             model.Roles = RoleManager.Roles.ToList();
+
+            model.UserID = ID;
+
+
+            var user = await UserManager.FindByIdAsync(ID);
             var userRolesIDs = user.Roles.Select(x => x.RoleId).ToList();
             model.UserRoles = RoleManager.Roles.Where(x => userRolesIDs.Contains(x.Id)).ToList();
+            model.Roles = RoleManager.Roles.Where(x => !userRolesIDs.Contains(x.Id)).ToList();
             return PartialView("_UserRoles", model);
         }
 
-
+        
         [HttpPost]
         public async Task<JsonResult> UserRoles(UserActionModel model)
         {
@@ -278,6 +280,50 @@ namespace FossTechCrm.Controllers
             }
 
             json.Data = new { Success = result.Succeeded, Message = string.Join(",", result.Errors) };
+            return json;
+        }
+
+        //[HttpGet]
+        //public async Task<ActionResult> UserRoles(string ID)
+        //{
+
+
+        //    UserRolesModel model = new UserRolesModel();
+        //    model.UserID = ID;
+        //    var user = await UserManager.FindByIdAsync(ID);
+        //    model.Roles = RoleManager.Roles.ToList();
+        //    var userRolesIDs = user.Roles.Select(x => x.RoleId).ToList();
+        //    model.UserRoles = RoleManager.Roles.Where(x => userRolesIDs.Contains(x.Id)).ToList();
+        //    return PartialView("_UserRoles", model);
+        //}
+
+
+        [HttpPost]
+        public async Task<JsonResult> UserRoleOperation(string userID,string roleID,bool isDelete=false)
+        {
+
+
+            JsonResult json = new JsonResult();
+            var user = await UserManager.FindByIdAsync(userID);
+            var role = await RoleManager.FindByIdAsync(roleID);
+            if(user!=null && role !=null)
+            {
+                IdentityResult result = null;
+                if(!isDelete)
+                {
+                    result = await UserManager.AddToRoleAsync(userID, role.Name);
+                }
+                else
+                {
+                     result = await UserManager.RemoveFromRoleAsync(userID, role.Name);
+                }
+             
+                json.Data = new { Success = result.Succeeded, Message = string.Join(",",result.Errors) };
+            }
+            else
+            {
+                json.Data = new { Success = false, Message = "Invalid Operation." };
+            }
             return json;
         }
     }
