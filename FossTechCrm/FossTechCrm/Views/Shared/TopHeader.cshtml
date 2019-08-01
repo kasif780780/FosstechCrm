@@ -1,14 +1,14 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 <div class="horizontal-menu">
     <nav class="navbar top-navbar col-lg-12 col-12 p-0">
         <div class="container">
             <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
-                
-             
+
+
                 <ul class="navbar-nav navbar-nav-">
-                   
+
                     <li class="nav-item nav-profile dropdown">
-                       @Html.Partial("_LoginPartial")
+                        @Html.Partial("_LoginPartial")
                     </li>
                     <li class="nav-item nav-toggler-item-right d-lg-none">
                         <button class="navbar-toggler align-self-center" type="button" data-toggle="horizontal-menu-toggle">
@@ -28,7 +28,7 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-              
+
                 <li class="nav-item mega-menu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-plus"></i> &nbsp;&nbsp;
@@ -45,52 +45,54 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <ul>
-                                                        <li class="nav-item"><a class="nav-link" href="/Lead/Index">Leads</a></li>
-                                                        <li class="nav-item"><a class="nav-link" href="/Product/Index">Products</a></li>
-                                                        <li class="nav-item"><a class="nav-link" href="pages/ui-features/badges.html">Quotes</a></li>
-                                                        <li class="nav-item"><a class="nav-link" href="pages/ui-features/breadcrumbs.html">Purchase Orders</a></li>
-                                                    
+                                                        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                                        {
+                                                            <li class="nav-item"><a class="nav-link" href="/Lead/Index">Leads</a></li>
+                                                            <li class="nav-item"><a class="nav-link" href="/Product/Index">Products</a></li>
+                                                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/badges.html">Quotes</a></li>
+                                                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/breadcrumbs.html">Purchase Orders</a></li>
+                                                        }
                                                     </ul>
                                                 </div>
-                                              
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-group col-md-4">
-            <div class="row">
-                <div class="col-12">
-                    <p class="category-heading">Advanced Elements</p>
-                    <div class="submenu-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <ul>
-                                   <li class="nav-item"><a class="nav-link" href="/Customer/Index">Customers</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/Contact/Index">Contact</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/tabs.html">Deals</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Activities</a></li>
-                                  
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="category-heading">Advanced Elements</p>
+                                        <div class="submenu-item">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <ul>
+                                                        <li class="nav-item"><a class="nav-link" href="/Customer/Index">Customers</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/Contact/Index">Contact</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="pages/ui-features/tabs.html">Deals</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Activities</a></li>
+
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>/
+                                </div>
+                            </div>
+                            <div class="col-group col-md-4">
+                                <p class="category-heading">Icons</p>
+                                <ul class="submenu-item">
+                                    <li class="nav-item"><a class="nav-link" href="/Orders/Index">Invoices</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/modals.html">Vendors</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/tooltips.html">Reports</a></li>
                                 </ul>
                             </div>
-                           
-                        </div>
-                    </div>
-                </div>/
-            </div>
-        </div>
-        <div class="col-group col-md-4">
-            <p class="category-heading">Icons</p>
-            <ul class="submenu-item">
-                <li class="nav-item"><a class="nav-link" href="/Orders/Index">Invoices</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/ui-features/modals.html">Vendors</a></li>
-                <li class="nav-item"><a class="nav-link" href="pages/ui-features/tooltips.html">Reports</a></li>
-            </ul>
-        </div>
                         </div>
                     </div>
                 </li>
-              
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-ad"></i>
@@ -101,10 +103,10 @@
                         <ul class="submenu-item">
                             <li class="nav-item"><a class="nav-link" href="pages/apps/email.html">Email</a></li>
                             <li class="nav-item"><a class="nav-link" href="/SMS/SendSms/">SMS</a></li>
-                          
+
                     </div>
                 </li>
-               
+
             </ul>
         </div>
     </nav>
