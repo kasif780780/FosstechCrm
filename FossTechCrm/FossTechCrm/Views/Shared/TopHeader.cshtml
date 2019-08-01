@@ -45,12 +45,14 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <ul>
+                                                        <li class="nav-item"><a class="nav-link" href="/Lead/Index">Leads</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="/Product/Index">Products</a></li>
                                                         @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                                                         {
                                                             <li class="nav-item"><a class="nav-link" href="/Lead/Index">Leads</a></li>
                                                             <li class="nav-item"><a class="nav-link" href="/Product/Index">Products</a></li>
-                                                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/badges.html">Quotes</a></li>
-                                                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/breadcrumbs.html">Purchase Orders</a></li>
+                                                            @*<li class="nav-item"><a class="nav-link" href="pages/ui-features/badges.html">Quotes</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/ui-features/breadcrumbs.html">Purchase Orders</a></li>*@
                                                         }
                                                     </ul>
                                                 </div>
@@ -70,23 +72,23 @@
                                                     <ul>
                                                         <li class="nav-item"><a class="nav-link" href="/Customer/Index">Customers</a></li>
                                                         <li class="nav-item"><a class="nav-link" href="/Contact/Index">Contact</a></li>
-                                                        <li class="nav-item"><a class="nav-link" href="pages/ui-features/tabs.html">Deals</a></li>
-                                                        <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Activities</a></li>
+                                                        @*<li class="nav-item"><a class="nav-link" href="pages/ui-features/tabs.html">Deals</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">Activities</a></li>*@
 
                                                     </ul>
                                                 </div>
 
                                             </div>
                                         </div>
-                                    </div>/
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-group col-md-4">
                                 <p class="category-heading">Icons</p>
                                 <ul class="submenu-item">
                                     <li class="nav-item"><a class="nav-link" href="/Orders/Index">Invoices</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/modals.html">Vendors</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/tooltips.html">Reports</a></li>
+                                    @*<li class="nav-item"><a class="nav-link" href="pages/ui-features/modals.html">Vendors</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/tooltips.html">Reports</a></li>*@
                                 </ul>
                             </div>
                         </div>
@@ -101,8 +103,10 @@
                     </a>
                     <div class="submenu">
                         <ul class="submenu-item">
-                            <li class="nav-item"><a class="nav-link" href="pages/apps/email.html">Email</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/SMS/SendSms/">SMS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/MailRecipients/Index">Send Emails</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/SMS/SendSms/">Send SMS</a></li>
+
+                          
 
                     </div>
                 </li>

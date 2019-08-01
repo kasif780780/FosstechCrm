@@ -35,6 +35,8 @@ namespace FossTechCrm.Models
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<SentMail> SentMails { get; set; }
+        public DbSet<MailRecipient> MailRecipients { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

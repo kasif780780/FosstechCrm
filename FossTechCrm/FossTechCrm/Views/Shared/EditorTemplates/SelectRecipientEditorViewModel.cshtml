@@ -1,0 +1,30 @@
+﻿@model FossTechCrm.Models.SelectRecipientEditorViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<tr>
+    <td style="text-align:center">
+        @Html.CheckBoxFor(model => model.Selected)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.FullName)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Company)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.LastMailedDate)
+    </td>
+    <td>
+        @Html.HiddenFor(model => model.MailRecipientId)
+    </td>
+    <td>
+       
+    </td>
+</tr>
+

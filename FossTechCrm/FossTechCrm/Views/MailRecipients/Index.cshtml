@@ -1,0 +1,208 @@
+﻿@model FossTechCrm.Models.MailRecipientsViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="content">
+    <div class="row">
+
+
+
+        <div class="col-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3>Send Email to Selected Recipients</h3>
+
+                </div>
+                <div class="box-body">
+
+                    <p>
+
+
+                        <a href="/MailRecipients/Create" class="btn btn-success">
+                            <span class="fa fa-plus"></span>
+                            New
+                        </a>
+
+
+                    </p>
+
+
+
+                    @using (Html.BeginForm("SendMail", "MailRecipients", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+
+                    {
+
+                        // Add a "Check All" checkbox above the table:
+
+                        <div class="m-2">
+
+                            <input type="checkbox" id="checkall" /><span> Check All</span>
+                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+
+
+                        </div>
+
+
+
+                        // Wrap the table in a named <div> so we can refer to it from JQuery:
+
+                        <div id="checkboxes">
+
+
+
+                            <table class="table table-responsive table-bordered table-striped">
+
+                                <tr class="table-info">
+
+                                    <th>
+
+                                        @*This column will contain our checkboxes:*@
+
+                                        Select
+
+                                    </th>
+
+                                    <th>
+
+                                        @*This column will now hold a concatenation of the first/last names:*@
+
+                                        Name
+
+                                    </th>
+
+                                    <th>
+
+                                        Company
+
+                                    </th>
+
+                                    <th>
+
+                                        Email
+
+                                    </th>
+
+                                    <th>
+
+                                        Last Sent
+
+                                    </th>
+
+
+
+
+                                </tr>
+
+                                @* Our Table rows will be populated in the EditorTemplate: *@
+
+                                @Html.EditorFor(model => model.MailRecipients)
+
+                            </table>
+
+                        </div>
+
+                        <hr />
+
+                        <br />
+
+
+
+                        //Add a submit button to the bottom of the form:
+
+                        <input type="submit" name="operation" id="email" value="Send" class="btn btn-success" />
+
+                    }
+
+
+
+                    <div id="divProcessing">
+
+                        <p>Processing, please wait . . . <img src="https://loading.io/spinners/spin/lg.ajax-spinner-gif.gif" style="width:50px;height:50px;"></p>
+
+                    </div>
+
+
+
+                    @section Scripts {
+
+
+
+
+
+                        <script type="text/javascript">
+
+
+
+                            function toggleChecked(status) {
+
+                                $("#checkboxes input").each(function () {
+
+                                    $(this).prop("checked", status);
+
+                                });
+
+                            }
+
+
+
+                            $(document).ready(function () {
+
+
+
+                                // Grab a reference to the checkall checkbox:
+
+                                var checkAllBox = $("#checkall");
+
+                                var divProcessing = $("#divProcessing");
+
+
+
+                                // Hide the animated Gif when page loads:
+
+                                divProcessing.hide();
+
+                                checkAllBox.prop('checked', true);
+
+
+
+
+
+                                // Attach a handler for the checkAllBox click event:
+
+                                checkAllBox.click(function () {
+
+                                    var status = checkAllBox.prop('checked');
+
+                                    toggleChecked(status);
+
+                                });
+
+
+
+                                $('#email').click(function () {
+
+                                    // Required hack to get animated gif to run in IE:
+
+                                    setTimeout(function () {
+
+                                        divProcessing.show();
+
+                                    }, 100);
+
+                                    $('myform').submit();
+
+                                });
+
+                            });
+
+                        </script>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

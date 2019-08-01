@@ -16,7 +16,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><a href="/Account/Register" id="registerLink" style="color: white; margin-right: 10px;">Register</a></li>
+        <li><a href="/Account/Login" id="loginLink" style="color: white; margin-right: 10px;">Log in</a></li>
     </ul>
 }

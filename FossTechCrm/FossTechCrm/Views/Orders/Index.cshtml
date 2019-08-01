@@ -99,8 +99,9 @@
 
                                                             <td>
                                                                 @Html.ActionLink("Details", "Details", new { id = order.Id }) |
-                                                                @Html.ActionLink("Invo", "Invoice", new { id = order.Id }) |
+                                                              
                                                                 @Html.ActionLink("Print", "PrintInvoice", new { id = order.Id }) |
+                                                                @Html.ActionLink("Delete", "Delete", new { id = order.Id }) |
 
                                                             </td>
 
