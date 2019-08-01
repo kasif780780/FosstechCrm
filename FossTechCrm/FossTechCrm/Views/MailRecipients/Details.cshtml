@@ -1,51 +1,71 @@
 ﻿@model FossTechCrm.Models.MailRecipient
 
-@{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Edit.cshtml";
-}
 
-<h2>Details</h2>
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Send Emails</h4>
 
-<div>
-    <h4>MailRecipient</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                                    <div class="col-sm-12">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+                                        <div>
+                                            <h4>MailRecipient</h4>
+                                            <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+                                        </div>
+                                        <table class="table">
+                                            <tr>
+                                                <td> @Html.DisplayNameFor(model => model.LastName) </td>
+                                                <td> @Html.DisplayFor(model => model.LastName)</td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayNameFor(model => model.FirstName)
+                                                </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.FirstName)
+                                                </td>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Company)
-        </dt>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayNameFor(model => model.Email)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.Email)
+                                                </td>
+                                            </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Company)
-        </dd>
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayNameFor(model => model.Company)
+                                                </td>
 
-    </dl>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.Company)
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p>
+                                            @Html.ActionLink("Edit", "Edit", new { id = Model.MailRecipientId }) |
+                                            @Html.ActionLink("Back to List", "Index")
+                                        </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MailRecipientId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -24,7 +24,9 @@
         @Html.HiddenFor(model => model.MailRecipientId)
     </td>
     <td>
-       
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MailRecipientId }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.MailRecipientId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.MailRecipientId })
     </td>
 </tr>
 

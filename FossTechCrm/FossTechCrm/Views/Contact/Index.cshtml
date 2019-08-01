@@ -84,9 +84,9 @@
                     {
                         "data": "Id",
                         "render": function(data) {
-                            return `<div style="display:flex;"><a class="btn btn-default btn-sm" onclick="PopupForm('@Url.Action("AddOrEdit", "Contact")/${
-                                data}')">Edit</a>
-                                <a class="btn btn-sm btn-danger" onclick="Delete(${data})">Delete</a></div>`;
+                            return `<div style="display:flex;"><a class="btn btn-info text-white btn-sm" onclick="PopupForm('@Url.Action("AddOrEdit", "Contact")/${
+                                data}')">Edit</a>|
+                                <a class="btn btn-sm btn-danger text-white" onclick="Delete(${data})">Delete</a></div>`;
                         },
                         "orderable": false,
                         "searchable": false,

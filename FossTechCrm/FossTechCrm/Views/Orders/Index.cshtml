@@ -225,10 +225,10 @@
                     <div class="form-horizontal">
                         <input type="hidden" id="CustomerId" />
                         <div class="form-group">
-                            <label class="control-label col-md-2">
+                            <label class="control-label col-md-12">
                                 Select Customer
                             </label>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <select id="customer" class="form-control">
                                     @foreach (var customer in customers)
                                     {
@@ -247,7 +247,7 @@
                             <label class="control-label col-md-2">
                                 Select products
                             </label>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <select id="product" class="form-control">
                                     @foreach (var product in products)
                                     {
@@ -260,10 +260,11 @@
                             <label class="control-label col-md-2">
                                 Quantity
                             </label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input type="number" id="quantity" name="quantity" placeholder="Quantity" class="form-control" />
                             </div>
-                            <div class="col-md-2 col-lg-offset-4">
+                            <div class="col-md-4" style="    float: right;
+    margin-top: -46px;">
                                 <a id="addToList" class="btn btn-primary">Add To List</a>
                             </div>
                         </div>

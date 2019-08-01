@@ -3,206 +3,217 @@
     ViewBag.Title = "Index";
 }
 
-<section class="content">
-    <div class="row">
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Send Emails</h4>
+                  
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 
+                                    <div class="col-sm-12">
+                                        <div class="box-body">
 
+                                            <p>
 
-        <div class="col-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3>Send Email to Selected Recipients</h3>
 
-                </div>
-                <div class="box-body">
+                                                <a href="/MailRecipients/Create" class="btn btn-success">
+                                                    <span class="fa fa-plus"></span>
+                                                    New
+                                                </a>
 
-                    <p>
 
+                                            </p>
 
-                        <a href="/MailRecipients/Create" class="btn btn-success">
-                            <span class="fa fa-plus"></span>
-                            New
-                        </a>
 
 
-                    </p>
+                                            @using (Html.BeginForm("SendMail", "MailRecipients", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
 
+                                            {
 
+                                                // Add a "Check All" checkbox above the table:
 
-                    @using (Html.BeginForm("SendMail", "MailRecipients", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+                                                <div class="m-2">
 
-                    {
+                                                    <input type="checkbox" id="checkall" /><span> Check All</span>
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
 
-                        // Add a "Check All" checkbox above the table:
 
-                        <div class="m-2">
+                                                </div>
 
-                            <input type="checkbox" id="checkall" /><span> Check All</span>
-                            <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
 
 
-                        </div>
+                                                // Wrap the table in a named <div> so we can refer to it from JQuery:
 
+                                                <div id="checkboxes">
 
 
-                        // Wrap the table in a named <div> so we can refer to it from JQuery:
 
-                        <div id="checkboxes">
+                                                    <table class="table">
 
+                                                        <tr class="table-info">
 
+                                                            <th>
 
-                            <table class="table table-responsive table-bordered table-striped">
+                                                                @*This column will contain our checkboxes:*@
 
-                                <tr class="table-info">
+                                                                Select
 
-                                    <th>
+                                                            </th>
 
-                                        @*This column will contain our checkboxes:*@
+                                                            <th>
 
-                                        Select
+                                                                @*This column will now hold a concatenation of the first/last names:*@
 
-                                    </th>
+                                                                Name
 
-                                    <th>
+                                                            </th>
 
-                                        @*This column will now hold a concatenation of the first/last names:*@
+                                                            <th>
 
-                                        Name
+                                                                Company
 
-                                    </th>
+                                                            </th>
 
-                                    <th>
+                                                            <th>
 
-                                        Company
+                                                                Email
 
-                                    </th>
+                                                            </th>
 
-                                    <th>
+                                                            <th>
 
-                                        Email
+                                                                Last Sent
 
-                                    </th>
+                                                            </th>
 
-                                    <th>
+                                                            <th colspan="2">Action</th>
+                                                           
+                                                            <th></th>
 
-                                        Last Sent
 
-                                    </th>
+                                                        </tr>
 
+                                                        @* Our Table rows will be populated in the EditorTemplate: *@
 
+                                                        @Html.EditorFor(model => model.MailRecipients)
 
+                                                    </table>
 
-                                </tr>
+                                                </div>
 
-                                @* Our Table rows will be populated in the EditorTemplate: *@
+                                                <hr />
 
-                                @Html.EditorFor(model => model.MailRecipients)
+                                                <br />
 
-                            </table>
 
-                        </div>
 
-                        <hr />
+                                                //Add a submit button to the bottom of the form:
 
-                        <br />
+                                                <input type="submit" name="operation" id="email" value="Send" class="btn btn-success" />
 
+                                            }
 
 
-                        //Add a submit button to the bottom of the form:
 
-                        <input type="submit" name="operation" id="email" value="Send" class="btn btn-success" />
+                                            <div id="divProcessing">
 
-                    }
+                                                <p>Processing, please wait . . . <img src="https://loading.io/spinners/spin/lg.ajax-spinner-gif.gif" style="width:50px;height:50px;"></p>
 
+                                            </div>
 
 
-                    <div id="divProcessing">
 
-                        <p>Processing, please wait . . . <img src="https://loading.io/spinners/spin/lg.ajax-spinner-gif.gif" style="width:50px;height:50px;"></p>
+                                            @section Scripts {
 
-                    </div>
 
 
 
-                    @section Scripts {
 
+                                                <script type="text/javascript">
 
 
 
+                                                    function toggleChecked(status) {
 
-                        <script type="text/javascript">
+                                                        $("#checkboxes input").each(function () {
 
+                                                            $(this).prop("checked", status);
 
+                                                        });
 
-                            function toggleChecked(status) {
+                                                    }
 
-                                $("#checkboxes input").each(function () {
 
-                                    $(this).prop("checked", status);
 
-                                });
+                                                    $(document).ready(function () {
 
-                            }
 
 
+                                                        // Grab a reference to the checkall checkbox:
 
-                            $(document).ready(function () {
+                                                        var checkAllBox = $("#checkall");
 
+                                                        var divProcessing = $("#divProcessing");
 
 
-                                // Grab a reference to the checkall checkbox:
 
-                                var checkAllBox = $("#checkall");
+                                                        // Hide the animated Gif when page loads:
 
-                                var divProcessing = $("#divProcessing");
+                                                        divProcessing.hide();
 
+                                                        checkAllBox.prop('checked', true);
 
 
-                                // Hide the animated Gif when page loads:
 
-                                divProcessing.hide();
 
-                                checkAllBox.prop('checked', true);
 
+                                                        // Attach a handler for the checkAllBox click event:
 
+                                                        checkAllBox.click(function () {
 
+                                                            var status = checkAllBox.prop('checked');
 
+                                                            toggleChecked(status);
 
-                                // Attach a handler for the checkAllBox click event:
+                                                        });
 
-                                checkAllBox.click(function () {
 
-                                    var status = checkAllBox.prop('checked');
 
-                                    toggleChecked(status);
+                                                        $('#email').click(function () {
 
-                                });
+                                                            // Required hack to get animated gif to run in IE:
 
+                                                            setTimeout(function () {
 
+                                                                divProcessing.show();
 
-                                $('#email').click(function () {
+                                                            }, 100);
 
-                                    // Required hack to get animated gif to run in IE:
+                                                            $('myform').submit();
 
-                                    setTimeout(function () {
+                                                        });
 
-                                        divProcessing.show();
+                                                    });
 
-                                    }, 100);
+                                                </script>
 
-                                    $('myform').submit();
+                                            }
 
-                                });
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </section>
 
-                            });
-
-                        </script>
-
-                    }
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
