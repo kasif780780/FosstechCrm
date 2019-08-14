@@ -9,11 +9,11 @@
                 @if (Model.Id > 0)
                 {
 
-                    <span>Edit Lead</span>
+                    <span>Edit Customer</span>
                 }
                 else
                 {
-                    <span>Create Lead</span>
+                    <span>Create Customer</span>
                 }
 
             </h5>
@@ -26,59 +26,59 @@
                 <div class="form-row">
                     <input type="hidden" name="Id" value="@Model.Id" />
                     <div class="form-group col-md-6">
-                        <label for="First Name">Name</label>
-                        <input class="form-control" name="FirstName" placeholder="Name" value="@Model.FirstName">
+                        <label for="First Name">First Name</label>
+                        <input class="form-control" name="FirstName"  value="@Model.FirstName">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="Company Name">Company Name</label>
-                        <input class="form-control" name="LastName" placeholder="Company Name" value="@Model.LastName">
+                        <label for="Company Name">Last Name</label>
+                        <input class="form-control" name="LastName"  value="@Model.LastName">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for=" Phone">Phone</label>
-                        <input class="form-control" name="Phone" placeholder="Phone" value="@Model.Phone">
+                        <input class="form-control" name="Phone"  value="@Model.Phone">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Email</label>
-                        <input class="form-control" name="Email" placeholder="Email" value="@Model.Email">
+                        <input class="form-control" name="Email"  value="@Model.Email">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="First Name">Date</label>
-                        <input class="form-control" name="Date" id="datepicker" placeholder="Rating" valu=@Model.Date>
+                        <input class="form-control" name="Date" id="datepicker"  valu=@Model.Date>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="Status">Company </label>
-                        <input class="form-control" name="Company" placeholder="Status" value=@Model.Company>
+                        <input class="form-control" name="Company"  value=@Model.Company>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="First Name">State</label>
-                        <input class="form-control" name="State" placeholder="Rating" valu=@Model.State>
+                        <input class="form-control" name="State"  valu=@Model.State>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="Status">Status </label>
-                        <input class="form-control" name="City" placeholder="City" value=@Model.City>
+                        <label for="Status">City </label>
+                        <input class="form-control" name="City"  value=@Model.City>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="First Name">Rating</label>
-                        <input class="form-control" name="Street" placeholder="Street" valu=@Model.Street>
+                        <label for="First Name">Street</label>
+                        <input class="form-control" name="Street"  valu=@Model.Street>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="Status">Status </label>
-                        <input class="form-control" name="Zip" placeholder="Zip" value=@Model.Zip>
+                        <label for="Status">Zip </label>
+                        <input class="form-control" name="Zip"  value=@Model.Zip>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="Ratings, ">Description </label>
-                        <input class="form-control" name="Description" placeholder="Description" value=@Model.Description>
+                        <input class="form-control" name="Description"  value=@Model.Description>
                     </div>
 
                 </div>

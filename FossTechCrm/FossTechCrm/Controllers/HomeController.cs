@@ -1,5 +1,6 @@
 ﻿using FossTechCrm.Entities;
 using FossTechCrm.Models;
+using FossTechCrm.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,23 @@ namespace FossTechCrm.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var dbl = new DashViewModels();
+            var contact = (from c in db.Contacts select c).ToList();
+            var product = (from p in db.Products select p).ToList();
+            var order = (from o in db.Orders select o).ToList();
+            var customer = (from cu in db.Customers select cu).ToList();
+            var lead = (from l in db.Leads select l).ToList();
+           
+            var model = new DashViewModels
+            {
+                _contacts = contact,
+                _product = product,
+                _order = order,
+                _customer = customer,
+                _lead = lead
+                
+            };
+            return View(model);
         }
 
         public ActionResult About()

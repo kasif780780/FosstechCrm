@@ -87,8 +87,15 @@
                                 <p class="category-heading">Icons</p>
                                 <ul class="submenu-item">
                                     <li class="nav-item"><a class="nav-link" href="/Orders/Index">Invoices</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/Incomes/Index">Income</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/Expanse/Index">Invoices</a></li>
+                                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item"><a class="nav-link" href="/Users/Index">Users</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/Roles/Index">Roles</a></li>
+                                    }
                                     @*<li class="nav-item"><a class="nav-link" href="pages/ui-features/modals.html">Vendors</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="pages/ui-features/tooltips.html">Reports</a></li>*@
+        <li class="nav-item"><a class="nav-link" href="pages/ui-features/tooltips.html">Reports</a></li>*@
                                 </ul>
                             </div>
                         </div>

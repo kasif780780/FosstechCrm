@@ -132,7 +132,7 @@
   }
   100% {
     opacity: 1;
-  }
+  }F
 }
 
 @-webkit-keyframes flash {
@@ -19119,7 +19119,7 @@ input:focus {
   outline: none;
 }
 
-@font-face {
+/*@font-face {
   font-family: 'Roboto';
   src: url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Light.eot");
   src: url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Light.eot?#iefix") format("embedded-opentype"), url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Light.woff2") format("woff2"), url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Light.woff") format("woff"), url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Light.ttf") format("truetype");
@@ -19157,7 +19157,7 @@ input:focus {
   src: url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Black.eot?#iefix") format("embedded-opentype"), url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Black.woff2") format("woff2"), url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Black.woff") format("woff"), url("http://www.urbanui.com/calmui/template/fonts/Roboto/Roboto-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
-}
+}*/
 
 .bg-twitter {
   background: #2caae1;

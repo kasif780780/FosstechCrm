@@ -194,7 +194,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ExpanseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncomesController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\MailRecipientsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -205,7 +207,9 @@
     <Compile Include="Controllers\SMSController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Expanse.cs" />
     <Compile Include="Entities\HMSUser.cs" />
+    <Compile Include="Entities\Income.cs" />
     <Compile Include="Entities\Lead.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderProduct.cs" />
@@ -226,6 +230,10 @@
     <Compile Include="Migrations\201908011000394_BulkEmail.Designer.cs">
       <DependentUpon>201908011000394_BulkEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908090527544_income.cs" />
+    <Compile Include="Migrations\201908090527544_income.Designer.cs">
+      <DependentUpon>201908090527544_income.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -239,12 +247,15 @@
     <Compile Include="Models\SMSViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\ExpanseService.cs" />
     <Compile Include="Services\FosstechRoleManager.cs" />
     <Compile Include="Services\HMSSignInManager.cs" />
     <Compile Include="Services\HMSUserManager.cs" />
+    <Compile Include="Services\IncomeService.cs" />
     <Compile Include="Services\LeadService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DashViewModels.cs" />
     <Compile Include="ViewModels\LeadListingsModel.cs" />
     <Compile Include="ViewModels\PageViewModels.cs" />
     <Compile Include="ViewModels\RolesViewModels.cs" />
@@ -329,6 +340,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="myjs\jquery-3.3.1.min.map" />
     <Content Include="myjs\jquery-3.3.1.slim.min.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
@@ -673,7 +685,9 @@
     <Content Include="Theme\vendors\typeahead.js\typeahead.bundle.min.js" />
     <Content Include="Theme\vendors\x-editable\bootstrap-editable.css" />
     <Content Include="Theme\vendors\x-editable\bootstrap-editable.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -725,6 +739,16 @@
     <Content Include="Views\MailRecipients\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SelectRecipientEditorViewModel.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Incomes\_Action.cshtml" />
+    <Content Include="Views\Incomes\_Delete.cshtml" />
+    <Content Include="Views\Incomes\Delete.cshtml" />
+    <Content Include="Views\Incomes\Index.cshtml" />
+    <Content Include="Views\Incomes\Save.cshtml" />
+    <Content Include="Views\Expanse\_Action.cshtml" />
+    <Content Include="Views\Expanse\_Delete.cshtml" />
+    <Content Include="Views\Expanse\Delete.cshtml" />
+    <Content Include="Views\Expanse\Index.cshtml" />
+    <Content Include="Views\Expanse\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -781,6 +805,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908011000394_BulkEmail.resx">
       <DependentUpon>201908011000394_BulkEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090527544_income.resx">
+      <DependentUpon>201908090527544_income.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

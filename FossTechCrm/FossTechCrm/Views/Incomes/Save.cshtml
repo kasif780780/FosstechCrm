@@ -1,0 +1,69 @@
+﻿@*@model FossTechCrm.Entities.Income
+
+<h2>
+    @using (Html.BeginForm("Save", "Income", FormMethod.Post, new { id = "popupForm" }))
+    {
+        if (Model != null && Model.ID > 0)
+        {
+            @Html.HiddenFor(a => a.LeadID)
+        }
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.FirstName)
+
+        </div>
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.CompanyName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.CompanyName)
+
+        </div>
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Description)
+
+        </div>
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Email)
+
+        </div>
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.LeadSource, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.LeadSource)
+
+        </div>
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Phone)
+
+        </div>
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.Ratings, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Ratings)
+
+        </div>
+
+        <div class="form-group">
+            <label>First Name </label>
+            @Html.TextBoxFor(a => a.Status, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Status)
+
+        </div>
+
+        <input type="submit" value="save" />
+    }
+</h2>*@

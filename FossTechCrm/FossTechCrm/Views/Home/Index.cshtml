@@ -1,7 +1,6 @@
-﻿
+﻿@model FossTechCrm.ViewModels.DashViewModels
 <div class="container-scroller">
     <!-- partial:partials/_horizontal-navbar.html -->
-    
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
@@ -16,7 +15,7 @@
                                             <i class="fas fa-users"></i>
                                             <p class="font-weight-medium mt-2">Customers</p>
                                         </div>
-                                        <h1 class="font-weight-light">45679</h1>
+                                        <h1 class="font-weight-light">@Model._customer.Count()</h1>
                                         <p class="text-muted mb-0">Increase by 20%</p>
                                     </div>
                                 </div>
@@ -28,7 +27,7 @@
                                             <i class="fas fa-chart-bar"></i>
                                             <p class="font-weight-medium mt-2">Orders</p>
                                         </div>
-                                        <h1 class="font-weight-light">80927</h1>
+                                        <h1 class="font-weight-light">@Model._order.Count()</h1>
                                         <p class="text-muted mb-0">Increase by 60%</p>
                                     </div>
                                 </div>
@@ -38,9 +37,9 @@
                                     <div class="card-body text-center">
                                         <div class="text-info mb-4">
                                             <i class="fas fa-handshake"></i>
-                                            <p class="font-weight-medium mt-2">Delivery</p>
+                                            <p class="font-weight-medium mt-2">Product</p>
                                         </div>
-                                        <h1 class="font-weight-light">22339</h1>
+                                        <h1 class="font-weight-light">@Model._product.Count()</h1>
                                         <p class="text-muted mb-0">Decrease by 2%</p>
                                     </div>
                                 </div>
@@ -87,7 +86,7 @@
                                     </div>
                                 </div>
                                 <h4 class="font-weight-light">Total revenue</h4>
-                                <h1 class="font-weight-normal mb-0">36568</h1>
+                                <h1 class="font-weight-normal mb-0">655655</h1>
                                 <div class="d-md-flex justify-content-start mt-5">
                                     <div class="mb-3 mb-lg-0">
                                         <h4 class="font-weight-light text-primary">+40%</h4>
@@ -110,8 +109,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->

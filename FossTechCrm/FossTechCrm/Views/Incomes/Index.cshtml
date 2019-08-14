@@ -1,0 +1,125 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ Create
+</button>*@
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="card">
+                <div class="card-body">
+                   
+                    <button data-href="/Incomes/Action" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-bottom: 10px;">
+                        Create
+                    </button>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <div id="order-listing_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                                    <div class="col-sm-12">
+                                        <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Order #: activate to sort column descending" style="width: 66px;">Order #</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Purchased On: activate to sort column ascending" style="width: 116px;">Date Of Income</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending" style="width: 82px;">Amount</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 70px;">Action(Edit)</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 70px;">Actions(Delete)</th>
+
+</thead>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+      
+        <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        @Html.Partial("_Action")
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        var etable = $('#order-listing').DataTable({
+            "ajax": {
+                "url": '/Incomes/GetIncomes',
+                "type": "get",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "ID", "autoWidth": true },
+                { "data": "IncomeDate", "autoWidth": true },
+                { "data": "Amount", "autoWidth": true },
+               
+                {
+                    "data": "ID", "width": "50px", "render": function (data) { return '<button class="data-btn btn-success" data-toggle="modal" data-target="#exampleModal" data-href="/Incomes/Action/' + data +'" >Edit</button>'; }
+                },
+                {
+                    "data": "ID", "width": "50px", "render": function (data) { return '<button class="data-btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-href="/Incomes/Delete/' + data + '" >Delete</button>'; }
+                },
+            ]
+        })
+    })
+
+    $(".data-btn").click(function () {
+
+        $.ajax({
+            url: $(this).attr("data-href"),
+        })
+            .done(function
+                (response) {
+                $("#exampleModal .modal-dialog").html(response);
+            })
+    })
+
+    // $(".data-btn").click(function () {
+
+    //    $.ajax({
+    //        url: $(this).attr("data-href"),
+    //    })
+    //        .done(function
+    //            (response) {
+    //            $("#exampleModal .modal-dialog").html(response);
+    //        })
+    //})
+
+    $('#order-listing').on("click", ".data-btn", function (event) {
+
+        event.preventDefault();
+
+        $.ajax({
+            url: $(this).attr("data-href"),
+        })
+            .done(function
+                (response) {
+                $("#exampleModal .modal-dialog").html(response);
+            })
+        });  
+
+</script>
